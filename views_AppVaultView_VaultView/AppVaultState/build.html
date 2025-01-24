@@ -84,26 +84,39 @@ Widget build(BuildContext context) {
   return Center(
     child: Column(
       children: [
-        Text(AppLocalizations.of(context)!.vaultDesc),
+        ExcludeSemantics(
+            child: Text(AppLocalizations.of(context)!.vaultDesc)),
         (list.length == 0)
             ? Text(&quot;No data yet&quot;)
             : Expanded(
-                child: ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      SysFile file = list[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Card(
-                          margin: EdgeInsets.all(5),
-                          child: ListTile(
-                            leading: Icon(Icons.file_open),
-                            title: Text(file.name),
-                            subtitle: Text(file.route),
-                          ),
-                        ),
-                      );
-                    }))
+                child: Semantics(
+                    label: AppLocalizations.of(context)!.fileList,
+                    child: ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          SysFile file = list[index];
+                          return GestureDetector(
+                            onTap: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (context) =&gt;
+                                      FileContext(file: file));
+                              setState(() {
+                                list = [];
+                              });
+                              loadList();
+                            },
+                            child: Card(
+                              margin: EdgeInsets.all(5),
+                              child: ListTile(
+                                leading: Icon(Icons.file_open),
+                                title: Text(file.name),
+                                subtitle: Text(file.route),
+                              ),
+                            ),
+                          );
+                        })),
+              )
       ],
     ),
   );
@@ -135,7 +148,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

@@ -70,7 +70,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de listado (Sin uso actualmente):</p>
+  <p>Función de listado (Sin uso actualmente)</p>
 <p>Devuelve una lista de preferencias</p>
 </section>
 
@@ -93,7 +93,7 @@ Future&lt;List&lt;Preferences&gt;&gt; list() async {
           themeMode: map[&quot;themeMode&quot;].toString()));
     });
   } catch (e) {
-    print(e);
+    Logger().e(e);
   }
   return prefs;
 }</code></pre>
@@ -124,7 +124,7 @@ Future&lt;List&lt;Preferences&gt;&gt; list() async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

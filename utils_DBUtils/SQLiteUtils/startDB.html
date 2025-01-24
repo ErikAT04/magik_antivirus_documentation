@@ -73,7 +73,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; startDB() async {
-  print(&quot;Database opened&quot;);
+  Logger().i(&quot;Database opened&quot;);
   await db.execute(&quot;&quot;&quot;
   CREATE TABLE IF NOT EXISTS preferences(
     isUserRegistered BOOLEAN,
@@ -84,7 +84,7 @@
     themeMode TEXT
   );
   &quot;&quot;&quot;);
-  print(&quot;Table preferences created&quot;);
+  Logger().i(&quot;Table preferences created&quot;);
   await db.execute(&quot;&quot;&quot;
   CREATE TABLE IF NOT EXISTS files(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -96,7 +96,7 @@
     quarantineDate DATE
   );
 &quot;&quot;&quot;);
-  print(&quot;Table files created&quot;);
+  Logger().i(&quot;Table files created&quot;);
   await db.execute(&quot;&quot;&quot;
   CREATE TABLE IF NOT EXISTS forbFolders(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -104,7 +104,7 @@
     route TEXT
   );
 &quot;&quot;&quot;);
-  print(&quot;Table folders created&quot;);
+  Logger().i(&quot;Table folders created&quot;);
   await db.insert(&#39;preferences&#39;, {
     &quot;isUserRegistered&quot;: 0,
     &quot;userName&quot;: &quot;&quot;,
@@ -113,7 +113,7 @@
     &quot;isAutoThemeMode&quot;: 0,
     &quot;themeMode&quot;: &quot;dark&quot;
   });
-  print(&quot;preferences inserted&quot;);
+  Logger().i(&quot;preferences inserted&quot;);
 }</code></pre>
 </section>
 
@@ -142,7 +142,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

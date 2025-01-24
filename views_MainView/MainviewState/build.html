@@ -83,65 +83,134 @@
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(
-      title: Text(switch (actualPage) {
-        0 =&gt; AppLocalizations.of(context)!.mainPage,
-        1 =&gt; AppLocalizations.of(context)!.vault,
-        2 =&gt; AppLocalizations.of(context)!.myDevices,
-        int() =&gt; throw UnimplementedError(),
-      }),
-      leading: Builder(builder: (context) {
-        return Row(children: [
-          SizedBox(
-            width: 10,
-          ),
-          GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: (context.watch&lt;MainAppProvider&gt;().thisUser !=
-                          null &amp;&amp;
-                      context
-                              .watch&lt;MainAppProvider&gt;()
-                              .thisUser!
-                              .userIMGData !=
-                          null)
-                  ? NetworkImage(
-                      context.watch&lt;MainAppProvider&gt;().thisUser!.userIMGData!)
-                  : null,
+      appBar: AppBar(
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(4),
+            child: Container(
+              color: StyleEssentials.colorsMap[
+                  (context.watch&lt;MainAppProvider&gt;().theme ==
+                          StyleEssentials.lightMode)
+                      ? &quot;appMainBlue&quot;
+                      : &quot;appMainLightBlue&quot;],
+              height: 1,
+            )),
+        title: ExcludeSemantics(
+            child: Text(switch (actualPage) {
+          0 =&gt; AppLocalizations.of(context)!.mainPage,
+          1 =&gt; AppLocalizations.of(context)!.vault,
+          2 =&gt; AppLocalizations.of(context)!.myDevices,
+          int() =&gt; throw UnimplementedError(),
+        })),
+        leading: Builder(builder: (context) {
+          return Row(children: [
+            SizedBox(
+              width: 10,
             ),
-            onTap: () {
-              Scaffold.of(context).openDrawer();
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: (context.watch&lt;MainAppProvider&gt;().thisUser !=
+                            null &amp;&amp;
+                        context.watch&lt;MainAppProvider&gt;().thisUser!.image !=
+                            null)
+                    ? NetworkImage(
+                        context.watch&lt;MainAppProvider&gt;().thisUser!.image!)
+                    : null,
+              ),
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
+          ]);
+        }),
+      ),
+      drawer: AppDrawer(),
+      bottomNavigationBar: (MediaQuery.sizeOf(context).width &gt; 720 ||
+              MediaQuery.sizeOf(context).width &lt; 300)
+          ? null
+          : BottomNavigationBar(
+              items: [
+                BottomNavigationBarItem(
+                    icon: Semantics(
+                      child: Icon(Icons.home),
+                      label: AppLocalizations.of(context)!.mainPage,
+                      hint: AppLocalizations.of(context)!.mainPageContext,
+                    ),
+                    label: AppLocalizations.of(context)!.mainPage),
+                BottomNavigationBarItem(
+                    icon: Semantics(
+                      child: Icon(Icons.file_open),
+                      label: AppLocalizations.of(context)!.vaultLow,
+                      hint: AppLocalizations.of(context)!.vaultContext,
+                    ),
+                    label: AppLocalizations.of(context)!.vaultLow),
+                BottomNavigationBarItem(
+                    icon: Semantics(
+                      child: Icon(Icons.device_hub),
+                      label: AppLocalizations.of(context)!.devicesLow,
+                      hint: AppLocalizations.of(context)!.deviceContext,
+                    ),
+                    label: AppLocalizations.of(context)!.devicesLow)
+              ],
+              currentIndex: actualPage,
+              onTap: (value) {
+                setState(() {
+                  actualPage = value;
+                });
+              },
+            ),
+      body: Row(
+        children: [
+          (MediaQuery.sizeOf(context).width &gt; 720 ||
+                  MediaQuery.sizeOf(context).width &lt; 300)
+              ? NavigationRail(
+                  extended: MediaQuery.sizeOf(context).width &gt; 720,
+                  destinations: [
+                    NavigationRailDestination(
+                        icon: Semantics(
+                          child: Icon(Icons.home),
+                          label: AppLocalizations.of(context)!.mainPage,
+                          hint: AppLocalizations.of(context)!.mainPageContext,
+                        ),
+                        label: ExcludeSemantics(
+                            child: Text(
+                                AppLocalizations.of(context)!.mainPage))),
+                    NavigationRailDestination(
+                        icon: Semantics(
+                          child: Icon(Icons.file_open),
+                          label: AppLocalizations.of(context)!.vaultLow,
+                          hint: AppLocalizations.of(context)!.vaultContext,
+                        ),
+                        label: ExcludeSemantics(
+                            child: Text(
+                                AppLocalizations.of(context)!.vaultLow))),
+                    NavigationRailDestination(
+                        icon: Semantics(
+                          child: Icon(Icons.device_hub),
+                          label: AppLocalizations.of(context)!.devicesLow,
+                          hint: AppLocalizations.of(context)!.deviceContext,
+                        ),
+                        label: ExcludeSemantics(
+                            child: Text(
+                                AppLocalizations.of(context)!.devicesLow)))
+                  ],
+                  selectedIndex: actualPage,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      actualPage = value;
+                    });
+                  },
+                )
+              : Padding(padding: EdgeInsets.all(0)),
+          Expanded(
+            child: switch (actualPage) {
+              0 =&gt; aView,
+              1 =&gt; AppVault(),
+              2 =&gt; AppDevicesView(),
+              int() =&gt; throw UnimplementedError(),
             },
-          ),
-        ]);
-      }),
-    ),
-    drawer: AppDrawer(),
-    bottomNavigationBar: BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: AppLocalizations.of(context)!.mainPage),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.file_open),
-            label: AppLocalizations.of(context)!.vaultLow),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.device_hub),
-            label: AppLocalizations.of(context)!.devicesLow)
-      ],
-      currentIndex: actualPage,
-      onTap: (value) {
-        setState(() {
-          actualPage = value;
-        });
-      },
-    ),
-    body: switch (actualPage) {
-      0 =&gt; AnalysisView(),
-      1 =&gt; AppVault(),
-      2 =&gt; AppDevicesView(),
-      int() =&gt; throw UnimplementedError(),
-    },
-  );
+          )
+        ],
+      ));
 }</code></pre>
 </section>
 
@@ -170,7 +239,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de inserción:</p>
+  <p>Función de inserción</p>
 <p>Recibe un usuario y lo inserta en la base de datos</p>
 </section>
 
@@ -81,11 +81,12 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;bool&gt; insert(User item) async {
-  try{
-    var res = await MySQLUtils.connection.execute(&#39;INSERT INTO user(email, pass, username) VALUES (&quot;${item.email}&quot;, &quot;${item.pass}&quot;, &quot;${item.uname}&quot;)&#39;);
-    return res.affectedRows.toInt() == 1;
-  }catch(e){
-    print(e);
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;insert&quot;);
+    var body = await APIReaderUtils.postData(uri, item);
+    return body == convert.jsonEncode(item);
+  } catch (e) {
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -116,7 +117,7 @@ Future&lt;bool&gt; insert(User item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

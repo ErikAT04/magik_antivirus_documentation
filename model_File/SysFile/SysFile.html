@@ -57,7 +57,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">SysFile</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-id"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span>, </span></li>
+      <span class="name ">SysFile</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-id"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">id</span>, </span></li>
 <li><span class="parameter" id="-param-name"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span></li>
 <li><span class="parameter" id="-param-route"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span>, </span></li>
 <li><span class="parameter" id="-param-newName"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newName</span>, </span></li>
@@ -75,7 +75,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">SysFile({required this.id, required this.name, required this.route, required this.newName, required this.newRoute, required this.malwareType, required this.quarantineDate});</code></pre>
+  <pre class="language-dart"><code class="language-dart">SysFile({this.id, required this.name, required this.route, required this.newName, required this.newRoute, required this.malwareType, required this.quarantineDate});</code></pre>
 </section>
 
 
@@ -103,7 +103,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

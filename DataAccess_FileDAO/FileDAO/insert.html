@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de Inserción:</p>
+  <p>Función de Inserción</p>
 <p>Recibe un item y guarda su información en la base de datos</p>
 </section>
 
@@ -88,11 +88,11 @@ Future&lt;bool&gt; insert(SysFile item) async {
       &#39;newName&#39;: item.newName,
       &#39;newRoute&#39;: item.newRoute,
       &#39;malwareType&#39;: item.malwareType,
-      &#39;quarantineDate&#39;: item.quarantineDate
+      &#39;quarantineDate&#39;: item.quarantineDate.toString().substring(0, 10)
     });
     return res!=0;
   }catch(e){
-    print(e);
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -123,7 +123,7 @@ Future&lt;bool&gt; insert(SysFile item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

@@ -86,20 +86,28 @@ Widget build(BuildContext context) {
     child: Wrap(
       alignment: WrapAlignment.center,
       children: [
-        Text(
-          AppLocalizations.of(context)!.userAskErase,
-          softWrap: true,
+        ExcludeSemantics(
+          child: Text(
+            AppLocalizations.of(context)!.userAskErase,
+            softWrap: true,
+          ),
         ),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context, true);
-            },
-            child: Text(AppLocalizations.of(context)!.userErase)),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context, false);
-            },
-            child: Text(AppLocalizations.of(context)!.cancel)),
+        Semantics(
+            label: AppLocalizations.of(context)!.userErase,
+            hint: AppLocalizations.of(context)!.confirmContext,
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                child: Text(AppLocalizations.of(context)!.userErase))),
+        Semantics(
+            label: AppLocalizations.of(context)!.cancel,
+            hint: AppLocalizations.of(context)!.cancelContext,
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+                child: Text(AppLocalizations.of(context)!.cancel))),
       ],
     ),
   );
@@ -131,7 +139,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de inserción (Sin uso actualmente):</p>
+  <p>Función de inserción (Sin uso actualmente)</p>
 <p>Recibe un grupo de preferencias por parámetro y las inserta en la BD</p>
 </section>
 
@@ -92,7 +92,7 @@ Future&lt;bool&gt; insert(Preferences item) async {
     });
     return res == 1;
   } catch (e) {
-    print(e);
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -123,7 +123,7 @@ Future&lt;bool&gt; insert(Preferences item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

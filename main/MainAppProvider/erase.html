@@ -73,10 +73,10 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void erase() async{
+  <pre class="language-dart"><code class="language-dart">void erase() async {
   User u = thisUser!;
   &#47;&#47;Todos los dispositivos asignados a este usuario tendrán un usuario nulo al borrar el usuario.
-  for(Device d in devList){
+  for (Device d in await AppEssentials.getDevicesList()) {
     d.user = null;
     await DeviceDAO().update(d);
   }
@@ -110,7 +110,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

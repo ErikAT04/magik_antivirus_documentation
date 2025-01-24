@@ -87,45 +87,61 @@ Widget build(BuildContext context) {
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 10,
           children: [
-            TextField(
-              controller: unameController,
-              decoration: InputDecoration(
-                  errorText: unameError,
-                  labelText: AppLocalizations.of(context)!.newUserName,
-                  labelStyle: TextStyle(
-                      fontSize: 10,
-                      color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                          : AppEssentials.colorsMap[&quot;appMainBlue&quot;]),
-                  errorStyle: TextStyle(fontSize: 10)),
+            Semantics(
+              label: AppLocalizations.of(context)!.newUserName,
+              hint: AppLocalizations.of(context)!.unameContext,
+              child: TextField(
+                controller: unameController,
+                decoration: InputDecoration(
+                    errorText: unameError,
+                    labelText: AppLocalizations.of(context)!.newUserName,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch&lt;MainAppProvider&gt;().theme ==
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
+                            : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
             ),
-            TextField(
-              obscureText: true,
-              controller: passController,
-              decoration: InputDecoration(
-                  errorText: passError,
-                  labelText: AppLocalizations.of(context)!.passConfirm,
-                  labelStyle: TextStyle(
-                      fontSize: 10,
-                      color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                          : AppEssentials.colorsMap[&quot;appMainBlue&quot;]),
-                  errorStyle: TextStyle(fontSize: 10)),
+            Semantics(
+              label: AppLocalizations.of(context)!.passConfirm,
+              hint: AppLocalizations.of(context)!.passContext,
+              child: TextField(
+                obscureText: true,
+                controller: passController,
+                decoration: InputDecoration(
+                    errorText: passError,
+                    labelText: AppLocalizations.of(context)!.passConfirm,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch&lt;MainAppProvider&gt;().theme ==
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
+                            : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
             ),
             Wrap(
               children: [
-                ElevatedButton(
-                    onPressed: () {
-                      changeName(context);
-                    },
-                    child: Text(AppLocalizations.of(context)!.userCName)),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context, null);
-                    },
-                    child: Text(AppLocalizations.of(context)!.cancel))
+                Semantics(
+                  label: AppLocalizations.of(context)!.userCName,
+                  hint: AppLocalizations.of(context)!.userCNameContext,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        changeName(context);
+                      },
+                      child: Text(AppLocalizations.of(context)!.userCName)),
+                ),
+                Semantics(
+                  label: AppLocalizations.of(context)!.cancel,
+                  hint: AppLocalizations.of(context)!.cancelContext,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context, null);
+                      },
+                      child: Text(AppLocalizations.of(context)!.cancel)),
+                )
               ],
             )
           ],
@@ -159,7 +175,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

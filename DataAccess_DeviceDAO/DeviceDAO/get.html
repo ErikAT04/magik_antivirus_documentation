@@ -71,8 +71,8 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de obtención de dispositivo:</p>
-<p>Recibe una clave por parámetro y recibe el dispositivo que encuentre</p>
+  <p>Función de obtención de dispositivo</p>
+<p>Recibe una clave por parámetro y devuelve el dispositivo que encuentre en la BD</p>
 </section>
 
 
@@ -81,12 +81,23 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;Device?&gt; get(String value) async {
-  try{
-    var res = await MySQLUtils.connection.execute(&quot;SELECT * FROM device WHERE id LIKE &#39;${value}&#39;&quot;);
-    var line = res.rows.first;
-    return Device(name: line.colAt(1)!, type: line.colAt(2)!, join_in: DateTime.parse(line.colAt(4)!), last_scan: DateTime.parse(line.colAt(3)!), id: line.colAt(0), user: line.colAt(5));
-  }catch(e){
-    print(e);
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;${value}&quot;);
+    var body = await APIReaderUtils.getData(uri);
+    if (body != &quot;Dispositivo no encontrado&quot;) {
+      var map = convert.jsonDecode(body);
+      return Device(
+          id: value,
+          dev_name: map[&quot;dev_name&quot;]!,
+          dev_type: map[&quot;dev_type&quot;]!,
+          join_in: DateTime.parse(map[&quot;join_in&quot;]!),
+          last_scan: DateTime.parse(map[&quot;last_scan&quot;]!),
+          user: map[&quot;user&quot;]);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    Logger().e(e);
     return null;
   }
 }</code></pre>
@@ -117,7 +128,7 @@ Future&lt;Device?&gt; get(String value) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

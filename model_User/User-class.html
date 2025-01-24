@@ -67,7 +67,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="User" class="callable">
-          <span class="name"><a href="../model_User/User/User.html">User</a></span><span class="signature">({<span class="parameter" id="-param-uname"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">uname</span>, </span><span class="parameter" id="-param-pass"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">pass</span>, </span><span class="parameter" id="-param-email"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span><span class="parameter" id="-param-userIMGData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">userIMGData</span></span>})</span>
+          <span class="name"><a href="../model_User/User/User.html">User</a></span><span class="signature">({<span class="parameter" id="-param-username"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span><span class="parameter" id="-param-passwd"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">passwd</span>, </span><span class="parameter" id="-param-email"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span><span class="parameter" id="-param-image"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">image</span></span>})</span>
         </dt>
         <dd>
           
@@ -104,8 +104,20 @@
 
 </dd>
 
-        <dt id="pass" class="property">
-  <span class="name"><a href="../model_User/User/pass.html">pass</a></span>
+        <dt id="image" class="property">
+  <span class="name"><a href="../model_User/User/image.html">image</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  String que guarda la dirección a la foto de perfil
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="passwd" class="property">
+  <span class="name"><a href="../model_User/User/passwd.html">passwd</a></span>
   <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
@@ -128,8 +140,8 @@
 
 </dd>
 
-        <dt id="uname" class="property">
-  <span class="name"><a href="../model_User/User/uname.html">uname</a></span>
+        <dt id="username" class="property">
+  <span class="name"><a href="../model_User/User/username.html">username</a></span>
   <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
@@ -140,24 +152,12 @@
 
 </dd>
 
-        <dt id="userIMGData" class="property">
-  <span class="name"><a href="../model_User/User/userIMGData.html">userIMGData</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
-  
-
-</dt>
-<dd>
-  String que guarda la dirección a la foto de perfil
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
     </dl>
   </section>
 
     
   <section
-      class="summary offset-anchor inherited"
+      class="summary offset-anchor"
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
@@ -171,6 +171,19 @@
 <dd class="inherited">
   Invoked when a nonexistent method or property is accessed.
   <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toJson" class="callable">
+  <span class="name"><a href="../model_User/User/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Mapeo de objeto a JSON
+  
 
 </dd>
 
@@ -237,7 +250,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

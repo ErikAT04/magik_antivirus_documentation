@@ -70,7 +70,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de listado:</p>
+  <p>Función de listado</p>
 <p>Devuelve una lista con todos los dispositivos de la BD</p>
 </section>
 
@@ -81,13 +81,21 @@
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;List&lt;Device&gt;&gt; list() async {
   List&lt;Device&gt; list = [];
-  try{
-    var res = await MySQLUtils.connection.execute(&quot;SELECT * FROM device&quot;);
-    for (var line in res.rows){
-     list.add(Device(name: line.colAt(1)!, type: line.colAt(2)!, join_in: DateTime.parse(line.colAt(4)!), last_scan: DateTime.parse(line.colAt(3)!), id: line.colAt(0), user: line.colAt(5)));
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;&quot;);
+    var body = await APIReaderUtils.getData(uri);
+    var mapList = convert.jsonDecode(body);
+    for (var map in mapList) {
+      list.add(Device(
+          id: map[&quot;id&quot;],
+          dev_name: map[&quot;dev_name&quot;]!,
+          dev_type: map[&quot;dev_type&quot;]!,
+          join_in: DateTime.parse(map[&quot;join_in&quot;]!),
+          last_scan: DateTime.parse(map[&quot;last_scan&quot;]!),
+          user: map[&quot;user&quot;]));
     }
-  }catch(e){
-    print(e);
+  } catch (e) {
+    Logger().e(e);
   }
   return list;
 }</code></pre>
@@ -118,7 +126,7 @@ Future&lt;List&lt;Device&gt;&gt; list() async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

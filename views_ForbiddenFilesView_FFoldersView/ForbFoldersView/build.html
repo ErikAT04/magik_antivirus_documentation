@@ -85,24 +85,31 @@ Widget build(BuildContext context) {
   List&lt;ForbFolder&gt; ffolders = context.watch&lt;MainAppProvider&gt;().fFoldersList;
   return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.drawerFFolders),
+        bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;],height: 1,)),
+        title: ExcludeSemantics(child: Text(AppLocalizations.of(context)!.drawerFFolders)),
       ),
       body: Center(
         child: Column(
           children: [
-            Text(AppLocalizations.of(context)!.fFoldersInfo),
-            ElevatedButton(
+            ExcludeSemantics(child: Text(AppLocalizations.of(context)!.fFoldersInfo)),
+            Semantics(
+              label: AppLocalizations.of(context)!.fFoldersAddFolder,
+              hint: AppLocalizations.of(context)!.ffolderBttContext,
+              child: ElevatedButton(
                 onPressed: () {
                   addFolder(context);
                 },
-                child: Text(AppLocalizations.of(context)!.fFoldersAddFolder)),
-            Text(AppLocalizations.of(context)!.fFoldersFolder),
+                child: Text(AppLocalizations.of(context)!.fFoldersAddFolder)),),
+            ExcludeSemantics(child:Text(AppLocalizations.of(context)!.fFoldersFolder)),
             Expanded(
-                child: ListView.builder(
+                child: Semantics(
+                  label: AppLocalizations.of(context)!.ffolderList,
+                  hint: AppLocalizations.of(context)!.ffolderList,
+                  child: ListView.builder(
                     itemCount: ffolders.length,
                     itemBuilder: (context, index) {
                       ForbFolder folder = ffolders[index];
-                      return ListTile(
+                      return MergeSemantics( child: ListTile(
                         leading: Icon(Icons.folder),
                         title: Text(folder.name),
                         subtitle: Text(folder.route),
@@ -113,8 +120,8 @@ Widget build(BuildContext context) {
                                   .read&lt;MainAppProvider&gt;()
                                   .deleteThisFolder(folder);
                             }),
-                      );
-                    }))
+                      ));
+                    })))
           ],
         ),
       ));
@@ -146,7 +153,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

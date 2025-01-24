@@ -57,10 +57,10 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">User</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-uname"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">uname</span>, </span></li>
-<li><span class="parameter" id="-param-pass"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">pass</span>, </span></li>
+      <span class="name ">User</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-username"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">username</span>, </span></li>
+<li><span class="parameter" id="-param-passwd"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">passwd</span>, </span></li>
 <li><span class="parameter" id="-param-email"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">email</span>, </span></li>
-<li><span class="parameter" id="-param-userIMGData"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">userIMGData</span>, </span></li>
+<li><span class="parameter" id="-param-image"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">image</span>, </span></li>
 </ol>})
     </section>
     
@@ -69,7 +69,11 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">User({required this.uname, required this.pass, required this.email, this.userIMGData});</code></pre>
+  <pre class="language-dart"><code class="language-dart">User(
+    {required this.username,
+    required this.passwd,
+    required this.email,
+    this.image});</code></pre>
 </section>
 
 
@@ -97,7 +101,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

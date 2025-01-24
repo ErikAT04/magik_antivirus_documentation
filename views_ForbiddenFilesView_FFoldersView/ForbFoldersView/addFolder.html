@@ -66,7 +66,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de adición de carpetas:</p>
+  <p>Función de adición de carpetas</p>
 <p>Abre un menú contextual de selección de directorios.</p>
 <p>Si se elige un archivo, se añade a la bd</p>
 </section>
@@ -78,9 +78,20 @@
   <pre class="language-dart"><code class="language-dart">void addFolder(BuildContext context) async {
   String? dirPath = await FilePicker.platform.getDirectoryPath();
   if (dirPath != null) {
+    bool b = false;
+
+    for(ForbFolder fb in context.read&lt;MainAppProvider&gt;().fFoldersList){
+      if(fb.route == dirPath){
+        b = true;
+      }
+    }
+    if(b){
+      Fluttertoast.showToast(msg: AppLocalizations.of(context)!.fFoldersAlreadyError);
+    } else{
     await ForbFolderDAO()
         .insert(ForbFolder(name: basename(dirPath), route: dirPath));
     context.read&lt;MainAppProvider&gt;().reloadFFolders();
+    }
   }
 }</code></pre>
 </section>
@@ -110,7 +121,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

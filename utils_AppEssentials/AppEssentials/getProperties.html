@@ -75,9 +75,8 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; getProperties() async {
   preferences = (await PrefsDAO().get(&quot;&quot;))!;
-  if(preferences.isUserRegistered){
+  if (preferences.isUserRegistered) {
     user = await UserDAO().get(preferences.uname);
-    print(&#39;pasa por aqui&#39;);
   }
 }</code></pre>
 </section>
@@ -107,7 +106,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

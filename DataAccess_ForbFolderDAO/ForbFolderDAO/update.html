@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de actualización (Actualmente sin uso):</p>
+  <p>Función de actualización (Actualmente sin uso)</p>
 <p>Recibe un directorio por parámetro y actualiza sus valores en la BD en función de su id</p>
 </section>
 
@@ -89,7 +89,7 @@ Future&lt;bool&gt; update(ForbFolder item) async {
     where: &#39;id=?&#39;, whereArgs: [item.id]);
     return res == 1;
   }catch(e){
-    print(e);
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -120,7 +120,7 @@ Future&lt;bool&gt; update(ForbFolder item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

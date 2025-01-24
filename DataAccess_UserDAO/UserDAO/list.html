@@ -70,7 +70,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de listado:</p>
+  <p>Función de listado</p>
 <p>Devuelve todos los usuarios de la base de datos (Sin uso actualmente)</p>
 </section>
 
@@ -81,13 +81,19 @@
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;List&lt;User&gt;&gt; list() async {
   List&lt;User&gt; users = [];
-  try{
-    var res = await MySQLUtils.connection.execute(&#39;SELECT * FROM user&#39;);
-    for (var line in res.rows){
-      users.add(User(uname: line.colAt(1)!, pass: line.colAt(2)!, email: line.colAt(0)!, userIMGData: (line.colAt(3)!=null)? line.colAt(3) : null));
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;&quot;);
+    var body = await APIReaderUtils.getData(uri);
+    var mapList = convert.jsonDecode(body);
+    for (var map in mapList) {
+      users.add(User(
+          email: map[&quot;email&quot;]!,
+          username: map[&quot;username&quot;]!,
+          passwd: map[&quot;passwd&quot;]!,
+          image: map[&quot;image&quot;]));
     }
-  }catch(e){
-    print(e);
+  } catch (e) {
+    Logger().e(e);
   }
   return users;
 }</code></pre>
@@ -118,7 +124,7 @@ Future&lt;List&lt;User&gt;&gt; list() async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

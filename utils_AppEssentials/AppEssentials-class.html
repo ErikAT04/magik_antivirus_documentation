@@ -57,7 +57,9 @@
 
     
 <section class="desc markdown">
-  <p>App Essentials: El conjunto de objetos y métodos que la aplicación necesita acceder de forma estática desde todos lados</p>
+  <p>Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación</p>
+<p>Todos los objetos y funciones de la clase están configurados de forma estática para poder acceder desde cualquier lado</p>
+<p>El motivo por el que están aquí es o para ayudar al Provider antes de cargarlo y durante su uso.</p>
 </section>
 
 
@@ -178,30 +180,6 @@
 
 </dd>
 
-        <dt id="colorsMap" class="property">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/colorsMap.html">colorsMap</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/painting/Color-class.html">Color</a></span>&gt;</span></span>
-  
-
-</dt>
-<dd>
-  Mapa de colores
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
-        <dt id="darkMode" class="property">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/darkMode.html">darkMode</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a></span>
-  
-
-</dt>
-<dd>
-  Tema del modo oscuro
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
         <dt id="dev" class="property">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/dev.html">dev</a></span>
   <span class="signature">&#8596; <a href="../model_Device/Device-class.html">Device</a>?</span>
@@ -226,18 +204,6 @@
 
 </dd>
 
-        <dt id="lightMode" class="property">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/lightMode.html">lightMode</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a></span>
-  
-
-</dt>
-<dd>
-  Tema del modo claro
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
         <dt id="listLocales" class="property">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/listLocales.html">listLocales</a></span>
   <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-ui/Locale-class.html">Locale</a></span>&gt;</span></span>
@@ -258,6 +224,42 @@
 </dt>
 <dd>
   Preferencias de la aplicación
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="quarantine" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/quarantine.html">quarantine</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Mapa que guarda el título de la notificación dependiendo del idioma
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="quarantineDirectory" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/quarantineDirectory.html">quarantineDirectory</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-io/Directory-class.html">Directory</a></span>
+  
+
+</dt>
+<dd>
+  Directorio en cuarentena
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="sigs" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/sigs.html">sigs</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../model_Signature/Signature-class.html">Signature</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Lista de Firmas
   <div class="features"><span class="feature">getter/setter pair</span></div>
 
 </dd>
@@ -318,6 +320,32 @@
 
 </dd>
 
+        <dt id="getDevicesList" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/getDevicesList.html">getDevicesList</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../model_Device/Device-class.html">Device</a></span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Función de obtención de la lista de dispositivos del usuario
+  
+
+</dd>
+
+        <dt id="getOutOfQuarantine" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/getOutOfQuarantine.html">getOutOfQuarantine</a></span><span class="signature">(<wbr><span class="parameter" id="getOutOfQuarantine-param-s"><span class="type-annotation"><a href="../model_File/SysFile-class.html">SysFile</a></span> <span class="parameter-name">s</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Función de restauración del archivo en cuarentena
+  
+
+</dd>
+
         <dt id="getProperties" class="callable">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/getProperties.html">getProperties</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
@@ -331,15 +359,28 @@
 
 </dd>
 
-        <dt id="pruebaAnalisisArchivos" class="callable">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/pruebaAnalisisArchivos.html">pruebaAnalisisArchivos</a></span><span class="signature">(<wbr>)
+        <dt id="loadSigs" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/loadSigs.html">loadSigs</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  Función de prueba de análisis:
+  Función de carga de firmas en la app
+  
+
+</dd>
+
+        <dt id="putInQuarantine" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/putInQuarantine.html">putInQuarantine</a></span><span class="signature">(<wbr><span class="parameter" id="putInQuarantine-param-f"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a></span> <span class="parameter-name">f</span>, </span><span class="parameter" id="putInQuarantine-param-sig"><span class="type-annotation"><a href="../model_Signature/Signature-class.html">Signature</a></span> <span class="parameter-name">sig</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Función de puesta en cuarentena
   
 
 </dd>
@@ -353,6 +394,19 @@
 </dt>
 <dd>
   Función de adición de usuarios a la BD
+  
+
+</dd>
+
+        <dt id="quarantinedFile" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/quarantinedFile.html">quarantinedFile</a></span><span class="signature">(<wbr><span class="parameter" id="quarantinedFile-param-filename"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">filename</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Mapa que guarda la frase que mandará la notificación, dependiendo del idioma
   
 
 </dd>
@@ -371,8 +425,8 @@
 </dd>
 
         <dt id="scanDir" class="callable">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/scanDir.html">scanDir</a></span><span class="signature">(<wbr><span class="parameter" id="scanDir-param-d"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/Directory-class.html">Directory</a></span> <span class="parameter-name">d</span>, </span><span class="parameter" id="scanDir-param-forbiddenPaths"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">forbiddenPaths</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/scanDir.html">scanDir</a></span><span class="signature">(<wbr><span class="parameter" id="scanDir-param-d"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/Directory-class.html">Directory</a></span> <span class="parameter-name">d</span>, </span><span class="parameter" id="scanDir-param-forbiddenPaths"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">forbiddenPaths</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
 
@@ -410,7 +464,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

@@ -120,10 +120,19 @@ Widget build(BuildContext context) {
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate
     ],
-    supportedLocales: AppEssentials.listLocales,
-    locale: context.watch&lt;MainAppProvider&gt;().language,
+    supportedLocales: [
+      Locale(&#39;es&#39;),
+      Locale(&#39;en&#39;),
+      Locale(&#39;de&#39;),
+      Locale(&#39;fr&#39;)
+    ],
+    locale: &#47;&#47;Controlar el lenguaje formato Locale(&#39;codigo&#39;)
+        &#47;&#47;El resto de los controles:
+        context.watch&lt;MainAppProvider&gt;().language,
     theme: context.watch&lt;MainAppProvider&gt;().theme,
-    home: (context.watch&lt;MainAppProvider&gt;().thisUser==null)?LogInView():Mainview(), &#47;&#47;Si no se carga un usuario por defecto, se va al inicio de sesión.
+    home: (context.watch&lt;MainAppProvider&gt;().thisUser == null)
+        ? LogInView()
+        : Mainview(), &#47;&#47;Si no se carga un usuario por defecto, se va al inicio de sesión.
   );
 }</code></pre>
 </section>
@@ -153,7 +162,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

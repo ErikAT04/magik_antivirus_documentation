@@ -74,33 +74,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">void scan() async {
-  setState(() {
-    isActive = true;
-  });
-  &#47;&#47; Verificar el estado del permiso
-  if (await Permission.manageExternalStorage.status.isGranted) {
-    &#47;&#47; Permiso ya concedido
-    Logger().d(&quot;Permiso concedido&quot;);
-    await AppEssentials.pruebaAnalisisArchivos();
-    AppEssentials.dev!.last_scan = DateTime.now();
-    await DeviceDAO().update(AppEssentials.dev!);
-  } else {
-    &#47;&#47; Solicitar permiso
-    print(&quot;Solicitando permiso de almacenamiento...&quot;);
-    if (await Permission.manageExternalStorage.request().isGranted) {
-      &#47;&#47; Permiso concedido
-      Logger().d(&quot;Permiso concedido&quot;);
-      await AppEssentials.pruebaAnalisisArchivos();
-      AppEssentials.dev!.last_scan = DateTime.now();
-      await DeviceDAO().update(AppEssentials.dev!);
-    } else {
-      &#47;&#47; Permiso denegado
-      Logger().d(&quot;Permiso denegado&quot;);
-    }
-  }
-  setState(() {
-    isActive = false;
-  });
+  context.read&lt;MainAppProvider&gt;().analizarArchivos();
 }</code></pre>
 </section>
 
@@ -129,7 +103,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

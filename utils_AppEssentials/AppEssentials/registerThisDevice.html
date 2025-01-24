@@ -81,29 +81,33 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static void registerThisDevice() async{
+  <pre class="language-dart"><code class="language-dart">static void registerThisDevice() async {
   DeviceInfoPlugin plugin = DeviceInfoPlugin();
-  String dname = switch(Platform.operatingSystem){
-    &quot;android&quot;=&gt; (await plugin.androidInfo).model,
-    &quot;ios&quot;=&gt; (await plugin.iosInfo).name,
-    &quot;macos&quot;=&gt; (await plugin.macOsInfo).computerName,
+  String dname = switch (Platform.operatingSystem) {
+    &quot;android&quot; =&gt; (await plugin.androidInfo).model,
+    &quot;ios&quot; =&gt; (await plugin.iosInfo).name,
+    &quot;macos&quot; =&gt; (await plugin.macOsInfo).computerName,
     &quot;linux&quot; =&gt; (await plugin.linuxInfo).name,
     &quot;windows&quot; =&gt; (await plugin.windowsInfo).userName,
     &#47;&#47; TODO: Handle this case.
     String() =&gt; throw UnimplementedError()
   };
-  Device thisdev = Device(name: dname, type: Platform.operatingSystem, join_in: DateTime.now(), last_scan: DateTime.now());
-  thisdev.id = switch(Platform.operatingSystem){
-    &quot;android&quot;=&gt; (await plugin.androidInfo).id,
-    &quot;ios&quot;=&gt; (await plugin.iosInfo).identifierForVendor,
-    &quot;macos&quot;=&gt; (await plugin.macOsInfo).systemGUID,
+  Device thisdev = Device(
+      dev_name: dname,
+      dev_type: Platform.operatingSystem,
+      join_in: DateTime.now(),
+      last_scan: DateTime.now());
+  thisdev.id = switch (Platform.operatingSystem) {
+    &quot;android&quot; =&gt; (await plugin.androidInfo).id,
+    &quot;ios&quot; =&gt; (await plugin.iosInfo).identifierForVendor,
+    &quot;macos&quot; =&gt; (await plugin.macOsInfo).systemGUID,
     &quot;linux&quot; =&gt; (await plugin.linuxInfo).machineId,
     &quot;windows&quot; =&gt; (await plugin.windowsInfo).deviceId,
     &#47;&#47; TODO: Handle this case.
     String() =&gt; throw UnimplementedError()
   };
   Device? devDB = await DeviceDAO().get(thisdev.id!);
-  if(devDB!=null){
+  if (devDB != null) {
     dev = devDB;
   } else {
     DeviceDAO().insert(thisdev);
@@ -137,7 +141,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

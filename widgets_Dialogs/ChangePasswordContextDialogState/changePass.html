@@ -114,7 +114,7 @@
     if (crypto.sha256
             .convert(utf8.encode(oldPassController.text))
             .toString() !=
-        context.read&lt;MainAppProvider&gt;().thisUser!.pass) {
+        context.read&lt;MainAppProvider&gt;().thisUser!.passwd) {
       errorOldText = AppLocalizations.of(context)!.errorWrongPass;
     } else {
       if (oldPassController.text == newPassController.text) {
@@ -173,7 +173,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

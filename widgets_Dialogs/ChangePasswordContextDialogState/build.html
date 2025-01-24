@@ -87,58 +87,74 @@ Widget build(BuildContext context) {
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 10,
         children: [
-          TextField(
-            controller: oldPassController,
-            obscureText: true,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.formerPassword,
-                errorText: errorOld,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                        : AppEssentials.colorsMap[&quot;appMainBlue&quot;]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+            label: AppLocalizations.of(context)!.formerPassword,
+            child: TextField(
+              controller: oldPassController,
+              obscureText: true,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.formerPassword,
+                  errorText: errorOld,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch&lt;MainAppProvider&gt;().theme ==
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
+                          : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
           ),
-          TextField(
-            controller: newPassController,
-            obscureText: true,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.newPassword,
-                errorText: errorNew,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                        : AppEssentials.colorsMap[&quot;appMainBlue&quot;]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+            label: AppLocalizations.of(context)!.newPassword,
+            child: TextField(
+              controller: newPassController,
+              obscureText: true,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.newPassword,
+                  errorText: errorNew,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch&lt;MainAppProvider&gt;().theme ==
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
+                          : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
           ),
-          TextField(
-            obscureText: true,
-            controller: repNewPassController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.repeatNewPass,
-                errorText: errorRep,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                        : AppEssentials.colorsMap[&quot;appMainBlue&quot;]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+            label: AppLocalizations.of(context)!.repeatNewPass,
+            child: TextField(
+              obscureText: true,
+              controller: repNewPassController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.repeatNewPass,
+                  errorText: errorRep,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch&lt;MainAppProvider&gt;().theme ==
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
+                          : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                changePass(context);
-              },
-              child: Text(AppLocalizations.of(context)!.userCPass)),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, null);
-              },
-              child: Text(AppLocalizations.of(context)!.cancel))
+          Semantics(
+            label: AppLocalizations.of(context)!.userCPass,
+            hint: AppLocalizations.of(context)!.userCPassContext,
+            child: ElevatedButton(
+                onPressed: () {
+                  changePass(context);
+                },
+                child: Text(AppLocalizations.of(context)!.userCPass)),
+          ),
+          Semantics(
+              label: AppLocalizations.of(context)!.cancel,
+              hint: AppLocalizations.of(context)!.cancelContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, null);
+                  },
+                  child: Text(AppLocalizations.of(context)!.cancel)))
         ],
       ),
     ),
@@ -171,7 +187,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

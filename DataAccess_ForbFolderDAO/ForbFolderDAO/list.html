@@ -70,7 +70,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de listado:</p>
+  <p>Función de listado</p>
 <p>Devuelve la lista de directorios prohibidos de la BD</p>
 </section>
 
@@ -87,7 +87,7 @@ Future&lt;List&lt;ForbFolder&gt;&gt; list() async {
       list.add(ForbFolder(id: int.parse(line[&quot;id&quot;].toString()), name: line[&quot;name&quot;].toString(), route: line[&quot;route&quot;].toString()));
     }
   }catch(e){
-    print(e);
+    Logger().e(e);
   }
   return list;
 }</code></pre>
@@ -118,7 +118,7 @@ Future&lt;List&lt;ForbFolder&gt;&gt; list() async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

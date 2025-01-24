@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de inserción de dispositivos:</p>
+  <p>Función de inserción de dispositivos</p>
 <p>Recibe un dispositivo por parámetro y lo inserta en la BD</p>
 </section>
 
@@ -81,11 +81,12 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;bool&gt; insert(Device item) async {
-  try{
-    var res = await MySQLUtils.connection.execute(&quot;INSERT INTO device(id, dev_name, dev_type, join_in, last_scan) values (&#39;${item.id}&#39;, &#39;${item.name}&#39;, &#39;${item.type}&#39;, &#39;${item.join_in}&#39;, &#39;${item.last_scan}&#39;)&quot;);
-    return res.affectedRows.toInt()==1;
-  }catch(e){
-    print(e);
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;insert&quot;);
+    var body = await APIReaderUtils.postData(uri, item);
+    return body == convert.jsonEncode(item);
+  } catch (e) {
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -116,7 +117,7 @@ Future&lt;bool&gt; insert(Device item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

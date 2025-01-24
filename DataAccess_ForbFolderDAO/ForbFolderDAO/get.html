@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de obtención (Actualmente sin uso):</p>
+  <p>Función de obtención (Actualmente sin uso)</p>
 <p>Recibe un entero por parámetro y devuelve el directorio con ese id</p>
 </section>
 
@@ -86,7 +86,7 @@ Future&lt;ForbFolder?&gt; get(int value) async {
     var line = res.first;
     return ForbFolder(id: int.parse(line[&quot;id&quot;].toString()), name: line[&quot;name&quot;].toString(), route: line[&quot;route&quot;].toString());
   }catch(e){
-    print(e);
+    Logger().e(e);
     return null;
   }
 }</code></pre>
@@ -117,7 +117,7 @@ Future&lt;ForbFolder?&gt; get(int value) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

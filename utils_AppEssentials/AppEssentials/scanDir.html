@@ -57,9 +57,9 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype">void</span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
 <span class="name ">scanDir</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="scanDir-param-d"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/Directory-class.html">Directory</a></span> <span class="parameter-name">d</span>, </span></li>
-<li><span class="parameter" id="scanDir-param-forbiddenPaths"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">forbiddenPaths</span></span></li>
+<li><span class="parameter" id="scanDir-param-forbiddenPaths"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">forbiddenPaths</span></span></li>
 </ol>)
 
       
@@ -77,11 +77,31 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static void scanDir(Directory d, List&lt;String&gt; forbiddenPaths) async{
-  await for(var f in d.list(recursive: false, followLinks: false)){
-    print(f.path);
-    if(f.statSync().type == FileSystemEntityType.directory &amp;&amp; !forbiddenPaths.contains(f.path)){
-      scanDir((Directory(f.path)), forbiddenPaths);
+  <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; scanDir(Directory d, Set&lt;String&gt; forbiddenPaths) async {
+  await for (var f in d.list(recursive: false)) {
+    if (f is File) {
+      try {
+        var bytes = await f.readAsBytes();
+        String s = md5.convert(bytes).toString();
+        if (sigs.map((sig) =&gt; sig.signature).toList().contains(s)) {
+          Signature? signature = null;
+          for (var sig in sigs) {
+            if (sig.signature == s) {
+              signature = sig;
+            }
+          }
+          putInQuarantine(f, signature!);
+        }
+        Logger().d(&quot;${f.path} : $s&quot;);
+      } catch (e) {
+        Logger().e(&quot;Error de Fichero en Uso: $e&quot;);
+      }
+    } else if (f is Directory &amp;&amp; !forbiddenPaths.contains(f.path)) {
+      try {
+        await scanDir((Directory(f.path)), forbiddenPaths);
+      } catch (e) {
+        Logger().e(&quot;Error de directorio: $e&quot;);
+      }
     }
   }
 }</code></pre>
@@ -112,7 +132,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

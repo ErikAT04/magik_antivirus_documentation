@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de borrado de dispositivos (Actualmente sin uso):</p>
+  <p>Función de borrado de dispositivos (Actualmente sin uso)</p>
 <p>Recibe un dispositivo por parámetro y lo borra de la BD</p>
 </section>
 
@@ -81,11 +81,13 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;bool&gt; delete(Device item) async {
-  try{
-    var res =  await MySQLUtils.connection.execute(&quot;DELETE FROM device WHERE id LIKE &#39;${item.id}&#39;&quot;);
-    return res.affectedRows.toInt()==1;
-  }catch(e){
-    print(e);
+  try {
+    var uri =
+        Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;${item.id!}&#47;remove&quot;);
+    var body = await APIReaderUtils.deleteData(uri);
+    return body == &quot;Eliminado correctamente&quot;;
+  } catch (e) {
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -116,7 +118,7 @@ Future&lt;bool&gt; delete(Device item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

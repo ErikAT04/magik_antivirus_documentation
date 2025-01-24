@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de obtención:</p>
+  <p>Función de obtención</p>
 <p>Recibe un email y busca el usuario que tenga dicho email</p>
 </section>
 
@@ -81,16 +81,23 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;User?&gt; get(String value) async {
-  User? user = null;
-  try{
-    var res = await MySQLUtils.connection.execute(&quot;SELECT * FROM user WHERE email LIKE &#39;${value}&#39; OR username LIKE &#39;${value}&#39;&quot;);
-    var line = res.rows.first;
-    print(line.colAt(3));
-    user = User(uname: line.colAt(1)!, pass: line.colAt(2)!, email: line.colAt(0)!, userIMGData: (line.colAt(3)!=null)? (line.colAt(3)!) : null);
-  }catch(e){
-    print(e);
+  try {
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;${value}&quot;);
+    var body = await APIReaderUtils.getData(uri);
+    if (body != &quot;Dispositivo no encontrado&quot;) {
+      var map = convert.jsonDecode(body);
+      return User(
+          email: map[&quot;email&quot;]!,
+          username: map[&quot;username&quot;]!,
+          passwd: map[&quot;passwd&quot;]!,
+          image: map[&quot;image&quot;]);
+    } else {
+      return null;
+    }
+  } catch (e) {
+    Logger().e(e);
+    return null;
   }
-  return user;
 }</code></pre>
 </section>
 
@@ -119,7 +126,7 @@ Future&lt;User?&gt; get(String value) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

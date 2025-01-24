@@ -93,7 +93,7 @@ Future&lt;Preferences?&gt; get(String value) async {
             map[&#39;isAutoThemeMode&#39;].toString().toLowerCase() == &quot;true&quot;,
         themeMode: map[&quot;themeMode&quot;].toString());
   } catch (e) {
-    print(e);
+    Logger().e(e);
   }
   return prefs;
 }</code></pre>
@@ -124,7 +124,7 @@ Future&lt;Preferences?&gt; get(String value) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

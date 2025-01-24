@@ -78,13 +78,26 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void main() async{
+  <pre class="language-dart"><code class="language-dart">void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MySQLUtils.loadSQLDB();
+  if (!Platform.isWindows) {
+    Notificationessentials().iniciarNotificacion();
+  }
   await SQLiteUtils.cargardb();
-  try{
-  await AppEssentials.getProperties();
-  }catch(e){
+  await AppEssentials.loadSigs();
+  Directory dir = Directory(join(
+      (Platform.isAndroid)
+          ? (await getApplicationDocumentsDirectory()).path
+          : (await getApplicationDocumentsDirectory()).path,
+      &quot;MagikAV&quot;,
+      &quot;MyFiles&quot;));
+  if (!dir.existsSync()) {
+    dir.createSync(recursive: true);
+  }
+  AppEssentials.quarantineDirectory = dir;
+  try {
+    await AppEssentials.getProperties();
+  } catch (e) {
     await SQLiteUtils.startDB();
     await AppEssentials.getProperties();
   }
@@ -120,7 +133,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

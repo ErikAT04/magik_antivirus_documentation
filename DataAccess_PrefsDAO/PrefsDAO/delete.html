@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de borrado (Actualmente sin uso):</p>
+  <p>Función de borrado (Actualmente sin uso)</p>
 <p>Recibe un objeto de tipo Preferences y lo borra de la BD</p>
 </section>
 
@@ -85,7 +85,7 @@ Future&lt;bool&gt; delete(Preferences item) async {
     var res = await SQLiteUtils.db.delete(&#39;preferences&#39;);
     return res == 1;
   } catch (e) {
-    print(e);
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -116,7 +116,7 @@ Future&lt;bool&gt; delete(Preferences item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

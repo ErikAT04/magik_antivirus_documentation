@@ -112,13 +112,19 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  bool modoClaro = (context.watch&lt;MainAppProvider&gt;().theme==AppEssentials.lightMode);
+  bool modoClaro =
+      (context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode);
   return Drawer(
-      child: Column(
-        children: [
-          GestureDetector(
+      child: SingleChildScrollView(
+    child: Column(
+      children: [
+        Semantics(
+          label: AppLocalizations.of(context)!.userTile,
+          hint: AppLocalizations.of(context)!.userContext,
+          child: GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=&gt;UserView()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =&gt; UserView()));
             },
             child: DrawerHeader(
               margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -126,32 +132,79 @@ Widget build(BuildContext context) {
                 children: [
                   CircleAvatar(
                     radius: 30,
-            backgroundImage: (context.watch&lt;MainAppProvider&gt;().thisUser!=null &amp;&amp; context.watch&lt;MainAppProvider&gt;().thisUser!.userIMGData!=null)?NetworkImage(context.watch&lt;MainAppProvider&gt;().thisUser!.userIMGData!):null,),
-                  Expanded(child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text((context.watch&lt;MainAppProvider&gt;().thisUser!=null)?context.watch&lt;MainAppProvider&gt;().thisUser!.uname:&quot;No user&quot;),
-                      Text((context.watch&lt;MainAppProvider&gt;().thisUser!=null)?context.watch&lt;MainAppProvider&gt;().thisUser!.email:&quot;No user&quot;)
-                    ],
-                  ),),
-
+                    backgroundImage: (context
+                                    .watch&lt;MainAppProvider&gt;()
+                                    .thisUser !=
+                                null &amp;&amp;
+                            context
+                                    .watch&lt;MainAppProvider&gt;()
+                                    .thisUser!
+                                    .image !=
+                                null)
+                        ? NetworkImage(
+                            context.watch&lt;MainAppProvider&gt;().thisUser!.image!)
+                        : null,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text((context.watch&lt;MainAppProvider&gt;().thisUser !=
+                                null)
+                            ? context
+                                .watch&lt;MainAppProvider&gt;()
+                                .thisUser!
+                                .username
+                            : &quot;No user&quot;),
+                        Text((context.watch&lt;MainAppProvider&gt;().thisUser !=
+                                null)
+                            ? context.watch&lt;MainAppProvider&gt;().thisUser!.email
+                            : &quot;No user&quot;)
+                      ],
+                    ),
+                  ),
                   Text(&quot;&gt;&quot;)
                 ],
               ),
             ),
           ),
-          GestureDetector(
+        ),
+        Semantics(
+          label: AppLocalizations.of(context)!.drawerFFolders,
+          hint: AppLocalizations.of(context)!.ffoldersContext,
+          child: GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=&gt;ForbFoldersView()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =&gt; ForbFoldersView()));
             },
             child: ListTile(
-              leading: Icon(Icons.folder, color: AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),
-              title: Text(AppLocalizations.of(context)!.drawerFFolders , style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),),),
+              leading: Icon(Icons.folder,
+                  color: StyleEssentials.colorsMap[
+                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+              title: Text(
+                AppLocalizations.of(context)!.drawerFFolders,
+                style: TextStyle(
+                  color: (StyleEssentials.colorsMap[
+                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                ),
+              ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.translate, color: AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),
-            title: Text(AppLocalizations.of(context)!.drawerTranslate, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),),),
+        ),
+        Semantics(
+          label: AppLocalizations.of(context)!.drawerTranslate,
+          hint: AppLocalizations.of(context)!.translate,
+          child: ListTile(
+            leading: Icon(Icons.translate,
+                color: StyleEssentials.colorsMap[
+                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+            title: Text(
+              AppLocalizations.of(context)!.drawerTranslate,
+              style: TextStyle(
+                color: (StyleEssentials.colorsMap[
+                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+              ),
+            ),
             trailing: DropdownButton(
                 items: [
                   DropdownMenuItem(
@@ -176,26 +229,61 @@ Widget build(BuildContext context) {
                   context.read&lt;MainAppProvider&gt;().changeLang(value!);
                 }),
           ),
-          ListTile(
-            leading: Icon(Icons.dark_mode, color: AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),
-            title: Text(AppLocalizations.of(context)!.drawerDarkMode, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),),),
+        ),
+        Semantics(
+          label: AppLocalizations.of(context)!.drawerDarkMode,
+          hint: AppLocalizations.of(context)!.darkModeContext,
+          child: ListTile(
+            leading: Icon(Icons.dark_mode,
+                color: StyleEssentials.colorsMap[
+                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+            title: Text(
+              AppLocalizations.of(context)!.drawerDarkMode,
+              style: TextStyle(
+                color: (StyleEssentials.colorsMap[
+                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+              ),
+            ),
             trailing: Switch(
                 value: context.watch&lt;MainAppProvider&gt;().theme ==
-                    AppEssentials.darkMode,
+                    StyleEssentials.darkMode,
                 onChanged: (value) {
                   context.read&lt;MainAppProvider&gt;().changeTheme(value);
                 }),
           ),
-          GestureDetector(
-            onTap: () {},
+        ),
+        Semantics(
+          label: AppLocalizations.of(context)!.drawerAppVer,
+          hint: AppLocalizations.of(context)!.drawerAppVerContext,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =&gt; AboutView(
+                            language: context
+                                .watch&lt;MainAppProvider&gt;()
+                                .language
+                                .languageCode,
+                          )));
+            },
             child: ListTile(
-              leading: Icon(Icons.info, color: AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),
-              title: Text(&quot;${AppLocalizations.of(context)!.appVer} (WIP)&quot;, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;]),),),
+              leading: Icon(Icons.info,
+                  color: StyleEssentials.colorsMap[
+                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+              title: Text(
+                AppLocalizations.of(context)!.appVer,
+                style: TextStyle(
+                  color: (StyleEssentials.colorsMap[
+                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                ),
+              ),
             ),
           ),
-        ],
-      ),
-    );
+        )
+      ],
+    ),
+  ));
 }</code></pre>
 </section>
 
@@ -224,7 +312,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

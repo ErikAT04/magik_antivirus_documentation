@@ -71,7 +71,8 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de actualización en BD</p>
+  <p>Función de actualización</p>
+<p>Recibe un dispositivo por parámetro y actualiza sus valores en la BD</p>
 </section>
 
 
@@ -80,11 +81,13 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;bool&gt; update(Device item) async {
-  try{
-    var res = await MySQLUtils.connection.execute(&quot;UPDATE device SET dev_name=&#39;${item.name}&#39;, dev_type=&#39;${item.type}&#39;, last_scan=&#39;${item.last_scan}&#39;, user=${(item.user!=null)?&quot;&#39;${item.user}&#39;&quot;:&quot;NULL&quot;} WHERE id=&#39;${item.id}&#39;&quot;);
-    return res.affectedRows.toInt()==1;
-  }catch(e){
-    print(e);
+  try {
+    var uri =
+        Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;${item.id!}&#47;update&quot;);
+    var body = await APIReaderUtils.putData(uri, item);
+    return body == convert.jsonEncode(item);
+  } catch (e) {
+    Logger().e(e);
     return false;
   }
 }</code></pre>
@@ -115,7 +118,7 @@ Future&lt;bool&gt; update(Device item) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

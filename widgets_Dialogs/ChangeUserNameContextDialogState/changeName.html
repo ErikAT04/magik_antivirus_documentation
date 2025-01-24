@@ -103,7 +103,7 @@
         : null;
   } else {
     if (unameController.text ==
-        context.read&lt;MainAppProvider&gt;().thisUser!.uname) {
+        context.read&lt;MainAppProvider&gt;().thisUser!.username) {
       errorNameText = AppLocalizations.of(context)!.unameUnavaliable;
     } else {
       User? u = await UserDAO().get(unameController.text);
@@ -113,7 +113,7 @@
         if (crypto.sha256
                 .convert(utf8.encode(passController.text))
                 .toString() !=
-            context.read&lt;MainAppProvider&gt;().thisUser!.pass) {
+            context.read&lt;MainAppProvider&gt;().thisUser!.passwd) {
           errorPassText = AppLocalizations.of(context)!.errorWrongPass;
         } else {
           allCorrect = true;
@@ -158,7 +158,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

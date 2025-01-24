@@ -143,8 +143,8 @@
   }
   if (resultSuccess) {
     User u = User(
-        uname: unameController.text,
-        pass: crypto.sha256
+        username: unameController.text,
+        passwd: crypto.sha256
             .convert(utf8.encode(passController.text))
             .toString(),
         email: emailController.text);
@@ -186,7 +186,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

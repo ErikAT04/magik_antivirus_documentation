@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Función de obtención (Sin uso actualmente):</p>
+  <p>Función de obtención (Sin uso actualmente)</p>
 <p>Recibe un id por parámetro y devuelve la información de un fichero</p>
 </section>
 
@@ -85,7 +85,7 @@ Future&lt;SysFile?&gt; get(int value) async {
     var line = (await SQLiteUtils.db.query(&#39;files&#39;, where: &#39;id=?&#39;, whereArgs: [value])).first;
     return SysFile(id: int.parse(line[&quot;id&quot;].toString()), name: line[&quot;name&quot;].toString(), route: line[&quot;route&quot;].toString(), newName: line[&quot;newName&quot;].toString(), newRoute: line[&quot;newRoute&quot;].toString(), malwareType: line[&quot;malwareType&quot;].toString(), quarantineDate: DateTime.parse(line[&quot;quarantineDate&quot;].toString().substring(0, 10)));
   }catch(e){
-    print(e);
+    Logger().e(e);
     return null;
   }
 }</code></pre>
@@ -116,7 +116,7 @@ Future&lt;SysFile?&gt; get(int value) async {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>

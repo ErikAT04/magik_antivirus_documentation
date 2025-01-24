@@ -81,8 +81,9 @@
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   return Scaffold(
-      backgroundColor: AppEssentials.colorsMap[&quot;appMainBlue&quot;],
+      backgroundColor: StyleEssentials.colorsMap[&quot;appMainBlue&quot;],
       appBar: AppBar(
+        bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;],height: 1,)),
           title: Center(
         child: Text(AppLocalizations.of(context)!.logIn),
       )),
@@ -95,33 +96,46 @@ Widget build(BuildContext context) {
                 AppLocalizations.of(context)!.putCredentials,
                 style: TextStyle(fontSize: 16),
               ),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context)!.user,
-                          errorText: emailErrorText))),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  child: TextField(
-                    controller: passController,
-                    decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.pass,
-                        errorText: passErrorText),
-                    obscureText: true,
-                  )),
-              ElevatedButton(
-                  onPressed: () {
-                    logIn(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.logIn)),
+              Semantics(
+                  label: AppLocalizations.of(context)!.user,
+                  hint: AppLocalizations.of(context)!.userOrEmailContext,
+                  child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.user,
+                              errorText: emailErrorText)))),
+              Semantics(
+                  label: AppLocalizations.of(context)!.pass,
+                  hint: AppLocalizations.of(context)!.passContext,
+                  child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: TextField(
+                        controller: passController,
+                        decoration: InputDecoration(
+                            labelText: AppLocalizations.of(context)!.pass,
+                            errorText: passErrorText),
+                        obscureText: true,
+                      ))),
+              Semantics(
+                  label: AppLocalizations.of(context)!.logIn,
+                  hint: AppLocalizations.of(context)!.logInContext,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        logIn(context);
+                      },
+                      child: Text(AppLocalizations.of(context)!.logIn))),
               Padding(padding: EdgeInsets.all(5)),
-              ElevatedButton(
-                  onPressed: () {
-                    signUp(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.signUp)),
+              Semantics(
+                label: AppLocalizations.of(context)!.signUp,
+                hint: AppLocalizations.of(context)!.registerContext,
+                  child: ElevatedButton(
+                onPressed: () {
+                  signUp(context);
+                },
+                child: Text(AppLocalizations.of(context)!.signUp),
+              )),
               Padding(padding: EdgeInsets.all(5)),
             ],
           ),
@@ -155,7 +169,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.1
+      0.0.3
   </span>
   
 </footer>
