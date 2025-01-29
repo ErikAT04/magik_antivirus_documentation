@@ -46,12 +46,74 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <h1>
-    Magik Antivirus <img src="" height="70px">
-</h1>
-<p>
-    Trabajo de Fin de Grado de Erik Amo, basado en la detección de firmas
-</p>
+  <h1 id="magik-antivirus---proyecto-de-desarrollo-de-aplicaciones-multiplataforma">Magik Antivirus - Proyecto de Desarrollo de Aplicaciones Multiplataforma</h1>
+<p>Trabajo de fin de grado de Erik Amo, basado en el Análisis de Malware por medio de la <strong>detección basada en firmas</strong>.</p>
+<h2 id="objetivos-del-proyecto">Objetivos del proyecto</h2>
+<ul>
+<li>Aprender a manipular archivos de los distintos sistemas operativos, creándolos, editándolos y borrándolos</li>
+<li>Ser capaz de desplegar una aplicación que, con una única versión de código, pueda operar correctamente en Android, iOS, MacOS, Windows y Linux.</li>
+<li>Poder conectar una aplicación con una base de datos por medio de un servicio API, haciendo a través de ésta todas las operaciones CRUD necesarias.</li>
+<li>Gestionar los datos de usuario, así como sus dispositivos conectados y sus preferencias en la aplicación de forma local.</li>
+<li>Optimizar los recursos de un proceso con tanto peso como es el análisis de ficheros de un sistema operativo.</li>
+</ul>
+<h2 id="teora-de-la-deteccin-basada-en-firmas">Teoría de la Detección basada en Firmas</h2>
+<p>La detección basada en firmas es un método de identificación de malware <em>conocido</em> más utilizado. Reitero el <em>conocido</em>, ya que este método no sirve para amenazas desconocidas, sino para otras ya analizadas previamente por otros sistemas.</p>
+<p>Una firma es un patrón que identifica un código malicioso. Normalmente esa firma es el código interno de los ficheros infectados encriptado (Como es el caso de las firmas de esta aplicación). Cuando se registra una nueva firma un malware, esta es guardada en una base de datos de <em>firmas conocidas</em>, donde los servicios de protección recogerán esa firma para analizar otros archivos en busca de coincidencias.</p>
+<p>La detección basada en firmas tiene como ventaja la rápida identificación de malware conocido, pero tiene la desventaja de que, ante un malware desconocido por la base de datos, no va a poder detectar el software malicioso.</p>
+<h2 id="teora-de-apis">Teoría de APIs</h2>
+<p>Los servicios Web son aplicaciones que permiten la comunicación con distintos dispositivos electrónicos en red.&nbsp; Esto se hace por el protocolo HTTP: Un protocolo de transferencia de archivos de hipertexto por la red. Se basa en que el cliente hace una <strong>petición</strong> (un mensaje para hacer alguna instrucción en red) al servidor, y este devuelve una respuesta en forma de código.</p>
+<ul>
+<li>El rango de 200 a 299 sirve para marcar que la petición ha sido aceptada por el servidor</li>
+<li>El rango de 300 a 399 marca un error en la autorización del servicio</li>
+<li>El rango de 400 a 499 sirve para marcar un error en la petición</li>
+<li>Más allá de 500, la respuesta marca un error interno del servidor</li>
+</ul>
+<p>Las APIs son un contrato que permite a los desarrolladores interactuar con una aplicación. Una RESTful API es una API que se adapta al uso que le quiera dar el desarrollador. Esta se forma de EndPoints, puntos de interacción cliente-servidor, donde el cliente realiza una petición de obtención o manipulación de datos y el servidor le devuelve información en formato JSON</p>
+<h2 id="herramientas-y-entornos">Herramientas y Entornos</h2>
+<p>Para el desarrollo de este trabajo, he utilizado lo siguiente:</p>
+<ul>
+<li><strong>Lenguaje de Programación de la Aplicación - DART:</strong> Un lenguaje de programación tipado y open source que permite la programación JIT y permite cierta portabilidad con todos los dispositivos.
+Dentro de DART, se encuentra su framework más conocido para el desarrollo de interfaces, <em><strong>Flutter</strong></em>. Se caracteriza por ser un framework open source y con la posibilidad de instalar dependencias fácilmente para optimizar la creación de código, además de utilizar por defecto los Widgets de Material UI para generar sus interfaces gráficas.
+Las dependencias utilizadas para este proyecto son las siguientes:
+<ul>
+<li><strong>Country-Flags:</strong> Dependencia utilizada de forma estética en el menú de hamburguesa (Drawer) para, a la hora de cambiar el idioma, mostrar las banderas de éstos
+<ul>
+<li><strong>SQFlite:</strong> Para acceder a la base de datos local, SQFlite (Dispositivos móviles) y SQFlite_commons_ffi (Dispositivos de sobremesa) permite generar bases de datos en un archivo local y manipular sus datos de forma sencilla.</li>
+<li><strong>Flutter_SVG:</strong> Permite utilizar archivos de vectores (SVG) como iconos</li>
+<li><strong>Provider:</strong></li>
+<li><strong>INTL - l10n:</strong> Facilita la <em><strong>internacionalización</strong></em> de la aplicación.</li>
+<li><strong>Path_Provider:</strong></li>
+<li><strong>Logger:</strong> Durante el desarrollo de la aplicación, el usuario puede hacer comentarios de líneas de código para que aparezcan en la línea de comandos cuando se recorra su respectivo bloque</li>
+<li><strong>Crypto:</strong> Quizá una de las dependencias más importantes para esta aplicación, permite encriptar un archivo en todo tipo de métodos de encripción. Se utiliza para la encripción de contraseñas de usuario en sha256 y la encripción del código de los ficheros en base64.</li>
+<li><strong>FlutterToast:</strong> Permite generar mensajes emergentes en los dispositivos. Su nombre viene al objeto Toast de Android Studio</li>
+<li><strong>Flutter_Markdown:</strong> Permite utilizar el widget Markdown para leer un bloque de texto en dicho lenguaje de marcas y aplicar su texto al contenedor. Se utiliza en las ventanas de las versiones de la aplicación.</li>
+<li><strong>File_Picker:</strong> Permite al usuario elegir archivos de su sistema operativo, independientemente de cuál sea éste.</li>
+<li><strong>Device_Info_Plus:</strong> Saca información del dispositivo que está ejecutando la aplicación actualmente, información a la que Flutter de forma normal le cuesta acceder (dirección MAC, el identificador del dispositivo...)</li>
+<li><strong>Background_Service:</strong> Permite ejecutar acciones de la aplicación mientras ésta está en segundo plano.</li>
+<li><strong>Shared_Preferences:</strong> Guarda datos de la aplicación cuando esta se cierra, pudiendo acceder a ellos de vuelta cuando se vuelva a abrir.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lenguaje de Programación de la API - Python:</strong>
+Dependencias utilizadas:
+<ul>
+<li><strong>FastAPI:</strong> Permite al usuario generar una API, configurando sus distintos endpoints por medio de funciones.
+<ul>
+<li><strong>MySQL Connector:</strong> Conector a la base de datos de MySQL</li>
+<li><strong>SQLAlchemy:</strong> ORM de las bases de datos SQL. Por medio de objetos en Python se puede editar información en la base de datos.</li>
+<li><strong>PyJWT:</strong> Seguridad de APIs con Python. Genera JWTs (JSON Web Tokens), tokens que permiten acceder a los endpoints bloqueados por autenticación.</li>
+<li><strong>Uvicorn:</strong> Permite probar la API en el host local.</li>
+<li><strong>Python-Jose:</strong> Encripción de datos con Python, utilizado para la encripción SHA256.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Entorno de Desarrollo - Visual Studio Code:</strong></li>
+<li><strong>Base de datos Local - SQLite:</strong></li>
+<li><strong>Base de datos 'En red' - MySQL:</strong></li>
+</ul>
+<h2 id="estructura-de-la-interfaz">Estructura de la Interfaz</h2>
 </section>
 
 
@@ -86,13 +148,6 @@
 <dd>
 </dd>
 
-          <dt id="PrefsDAO">
-  <span class="name"><a href="DataAccess_PrefsDAO/DataAccess_PrefsDAO-library.html">DataAccess\PrefsDAO</a></span> 
-
-</dt>
-<dd>
-</dd>
-
           <dt id="SignatureDAO">
   <span class="name"><a href="DataAccess_SignatureDAO/DataAccess_SignatureDAO-library.html">DataAccess\SignatureDAO</a></span> 
 
@@ -114,6 +169,13 @@
 <dd>
 </dd>
 
+          <dt id="ApiContent">
+  <span class="name"><a href="model_ApiContent/model_ApiContent-library.html">model\ApiContent</a></span> 
+
+</dt>
+<dd>
+</dd>
+
           <dt id="Device">
   <span class="name"><a href="model_Device/model_Device-library.html">model\Device</a></span> 
 
@@ -130,13 +192,6 @@
 
           <dt id="ForbFolder">
   <span class="name"><a href="model_ForbFolder/model_ForbFolder-library.html">model\ForbFolder</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="Prefs">
-  <span class="name"><a href="model_Prefs/model_Prefs-library.html">model\Prefs</a></span> 
 
 </dt>
 <dd>
@@ -170,15 +225,15 @@
 <dd>
 </dd>
 
-          <dt id="NotificationEssentials">
-  <span class="name"><a href="utils_NotificationEssentials/utils_NotificationEssentials-library.html">utils\NotificationEssentials</a></span> 
+          <dt id="MainAppProvider">
+  <span class="name"><a href="viewmodels_MainAppProvider/viewmodels_MainAppProvider-library.html">viewmodels\MainAppProvider</a></span> 
 
 </dt>
 <dd>
 </dd>
 
-          <dt id="StyleEssentials">
-  <span class="name"><a href="utils_StyleEssentials/utils_StyleEssentials-library.html">utils\StyleEssentials</a></span> 
+          <dt id="StyleProvider">
+  <span class="name"><a href="viewmodels_StyleProvider/viewmodels_StyleProvider-library.html">viewmodels\StyleProvider</a></span> 
 
 </dt>
 <dd>
@@ -275,20 +330,19 @@
       <li><a href="DataAccess_DeviceDAO/DataAccess_DeviceDAO-library.html">DataAccess\DeviceDAO</a></li>
       <li><a href="DataAccess_FileDAO/DataAccess_FileDAO-library.html">DataAccess\FileDAO</a></li>
       <li><a href="DataAccess_ForbFolderDAO/DataAccess_ForbFolderDAO-library.html">DataAccess\ForbFolderDAO</a></li>
-      <li><a href="DataAccess_PrefsDAO/DataAccess_PrefsDAO-library.html">DataAccess\PrefsDAO</a></li>
       <li><a href="DataAccess_SignatureDAO/DataAccess_SignatureDAO-library.html">DataAccess\SignatureDAO</a></li>
       <li><a href="DataAccess_UserDAO/DataAccess_UserDAO-library.html">DataAccess\UserDAO</a></li>
       <li><a href="main/main-library.html">main</a></li>
+      <li><a href="model_ApiContent/model_ApiContent-library.html">model\ApiContent</a></li>
       <li><a href="model_Device/model_Device-library.html">model\Device</a></li>
       <li><a href="model_File/model_File-library.html">model\File</a></li>
       <li><a href="model_ForbFolder/model_ForbFolder-library.html">model\ForbFolder</a></li>
-      <li><a href="model_Prefs/model_Prefs-library.html">model\Prefs</a></li>
       <li><a href="model_Signature/model_Signature-library.html">model\Signature</a></li>
       <li><a href="model_User/model_User-library.html">model\User</a></li>
       <li><a href="utils_AppEssentials/utils_AppEssentials-library.html">utils\AppEssentials</a></li>
       <li><a href="utils_DBUtils/utils_DBUtils-library.html">utils\DBUtils</a></li>
-      <li><a href="utils_NotificationEssentials/utils_NotificationEssentials-library.html">utils\NotificationEssentials</a></li>
-      <li><a href="utils_StyleEssentials/utils_StyleEssentials-library.html">utils\StyleEssentials</a></li>
+      <li><a href="viewmodels_MainAppProvider/viewmodels_MainAppProvider-library.html">viewmodels\MainAppProvider</a></li>
+      <li><a href="viewmodels_StyleProvider/viewmodels_StyleProvider-library.html">viewmodels\StyleProvider</a></li>
       <li><a href="views_AboutView/views_AboutView-library.html">views\AboutView</a></li>
       <li><a href="views_AppVaultView_VaultView/views_AppVaultView_VaultView-library.html">views\AppVaultView\VaultView</a></li>
       <li><a href="views_DevicesView_DevicesView/views_DevicesView_DevicesView-library.html">views\DevicesView\DevicesView</a></li>

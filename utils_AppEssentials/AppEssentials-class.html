@@ -180,6 +180,18 @@
 
 </dd>
 
+        <dt id="color" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/color.html">color</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/painting/Color-class.html">Color</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
         <dt id="dev" class="property">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/dev.html">dev</a></span>
   <span class="signature">&#8596; <a href="../model_Device/Device-class.html">Device</a>?</span>
@@ -204,6 +216,18 @@
 
 </dd>
 
+        <dt id="isLightMode" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/isLightMode.html">isLightMode</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  Tema elegido
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
         <dt id="listLocales" class="property">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/listLocales.html">listLocales</a></span>
   <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-ui/Locale-class.html">Locale</a></span>&gt;</span></span>
@@ -216,9 +240,9 @@
 
 </dd>
 
-        <dt id="preferences" class="property">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/preferences.html">preferences</a></span>
-  <span class="signature">&#8596; <a href="../model_Prefs/Preferences-class.html">Preferences</a></span>
+        <dt id="prefs" class="property">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/prefs.html">prefs</a></span>
+  <span class="signature">&#8596; <a href="https://pub.dev/documentation/shared_preferences/2.4.0/shared_preferences/SharedPreferences-class.html">SharedPreferences</a></span>
   
 
 </dt>
@@ -264,18 +288,6 @@
 
 </dd>
 
-        <dt id="theme" class="property">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/theme.html">theme</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a></span>
-  
-
-</dt>
-<dd>
-  Tema elegido
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
         <dt id="user" class="property">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/user.html">user</a></span>
   <span class="signature">&#8596; <a href="../model_User/User-class.html">User</a>?</span>
@@ -308,7 +320,7 @@
 </dd>
 
         <dt id="changeTheme" class="callable">
-  <span class="name"><a href="../utils_AppEssentials/AppEssentials/changeTheme.html">changeTheme</a></span><span class="signature">(<wbr><span class="parameter" id="changeTheme-param-isDark"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isDark</span></span>)
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/changeTheme.html">changeTheme</a></span><span class="signature">(<wbr><span class="parameter" id="changeTheme-param-isLight"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isLight</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -372,6 +384,19 @@
 
 </dd>
 
+        <dt id="newPreferences" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/newPreferences.html">newPreferences</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
+  
+
+</dd>
+
         <dt id="putInQuarantine" class="callable">
   <span class="name"><a href="../utils_AppEssentials/AppEssentials/putInQuarantine.html">putInQuarantine</a></span><span class="signature">(<wbr><span class="parameter" id="putInQuarantine-param-f"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-io/File-class.html">File</a></span> <span class="parameter-name">f</span>, </span><span class="parameter" id="putInQuarantine-param-sig"><span class="type-annotation"><a href="../model_Signature/Signature-class.html">Signature</a></span> <span class="parameter-name">sig</span></span>)
     <span class="returntype parameter">&#8594; void</span>
@@ -420,6 +445,19 @@
 </dt>
 <dd>
   Función de registro y guardado de dispositivos
+  
+
+</dd>
+
+        <dt id="saveColorPreferences" class="callable">
+  <span class="name"><a href="../utils_AppEssentials/AppEssentials/saveColorPreferences.html">saveColorPreferences</a></span><span class="signature">(<wbr><span class="parameter" id="saveColorPreferences-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/Color-class.html">Color</a></span> <span class="parameter-name">color</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  
   
 
 </dd>

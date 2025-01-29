@@ -80,9 +80,6 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (!Platform.isWindows) {
-    Notificationessentials().iniciarNotificacion();
-  }
   await SQLiteUtils.cargardb();
   await AppEssentials.loadSigs();
   Directory dir = Directory(join(
@@ -95,15 +92,14 @@
     dir.createSync(recursive: true);
   }
   AppEssentials.quarantineDirectory = dir;
-  try {
-    await AppEssentials.getProperties();
-  } catch (e) {
-    await SQLiteUtils.startDB();
-    await AppEssentials.getProperties();
-  }
+  await AppEssentials.getProperties();
+  await SQLiteUtils.startDB();
   AppEssentials.registerThisDevice();
-  runApp(ChangeNotifierProvider(
-    create: (context) =&gt; MainAppProvider(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) =&gt; MainAppProvider()),
+      ChangeNotifierProvider(create: (context) =&gt; StyleProvider())
+    ],
     child: MainApp(),
   ));
 }</code></pre>

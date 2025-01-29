@@ -82,8 +82,8 @@
   if (res != null) {
     u.image = res;
     await UserDAO().update(u);
-    context.read&lt;MainAppProvider&gt;().changeUser(u);
   }
+  context.read&lt;MainAppProvider&gt;().changeUser(u);
 }</code></pre>
 </section>
 

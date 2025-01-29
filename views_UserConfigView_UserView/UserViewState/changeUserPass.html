@@ -81,6 +81,8 @@
   if (newPass != null) {
     context.read&lt;MainAppProvider&gt;().thisUser!.passwd = newPass;
     await UserDAO().update(context.read&lt;MainAppProvider&gt;().thisUser!);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(&quot;Contraseña actualizada correctamente&quot;)));
   }
 }</code></pre>
 </section>

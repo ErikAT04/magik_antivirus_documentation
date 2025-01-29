@@ -58,7 +58,7 @@
     <section class="multi-line-signature">
       
 <span class="returntype">void</span>
-<span class="name ">changeTheme</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="changeTheme-param-isDark"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isDark</span></span></li>
+<span class="name ">changeTheme</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="changeTheme-param-isLight"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isLight</span></span></li>
 </ol>)
 
       
@@ -74,9 +74,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static void changeTheme(bool isDark) async {
-  preferences.themeMode = isDark ? &quot;darkMode&quot; : &quot;lightMode&quot;;
-  await PrefsDAO().update(preferences);
+  <pre class="language-dart"><code class="language-dart">static void changeTheme(bool isLight) async {
+  prefs.setString(&quot;themeMode&quot;, isLight ? &quot;Light&quot; : &quot;Dark&quot;);
 }</code></pre>
 </section>
 

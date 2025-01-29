@@ -82,7 +82,7 @@
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   bool modoClaro =
-      context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode;
+      context.watch&lt;StyleProvider&gt;().isLightModeActive;
   return (devs.length == 0)
       ? Center(
           child: CircularProgressIndicator(),
@@ -98,12 +98,12 @@ Widget build(BuildContext context) {
                     child: Container(
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                            color: StyleEssentials.colorsMap[
-                                (modoClaro) ? &quot;white&quot; : &quot;appMainBlue&quot;],
+                            color: context.watch&lt;StyleProvider&gt;().colorsMap[
+                                (modoClaro) ? &quot;white&quot; : &quot;appMain&quot;],
                             border: Border.all(
-                                color: StyleEssentials.colorsMap[(modoClaro)
-                                    ? &quot;appMainBlue&quot;
-                                    : &quot;appMainLightBlue&quot;]!,
+                                color: context.watch&lt;StyleProvider&gt;().colorsMap[(modoClaro)
+                                    ? &quot;appMain&quot;
+                                    : &quot;appLight&quot;]!,
                                 width: 3),
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
@@ -114,50 +114,50 @@ Widget build(BuildContext context) {
                                 Expanded(
                                   child: Text(dev.dev_name,
                                       style: TextStyle(
-                                          color: StyleEssentials.colorsMap[
+                                          color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                               (modoClaro)
-                                                  ? &quot;appMainBlue&quot;
-                                                  : &quot;appMainLightBlue&quot;],
+                                                  ? &quot;appMain&quot;
+                                                  : &quot;appLight&quot;],
                                           fontSize: 40),
                                       overflow: TextOverflow.ellipsis),
                                 ),
                                 switch (dev.dev_type) {
                                   &quot;android&quot; =&gt; Icon(Icons.android,
                                       size: 100,
-                                      color: StyleEssentials.colorsMap[
+                                      color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                           (modoClaro)
-                                              ? &quot;appMainBlue&quot;
-                                              : &quot;appMainLightBlue&quot;]),
+                                              ? &quot;appMain&quot;
+                                              : &quot;appLight&quot;]),
                                   &quot;ios&quot; =&gt; Icon(Icons.apple,
                                       size: 100,
-                                      color: StyleEssentials.colorsMap[
+                                      color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                           (modoClaro)
-                                              ? &quot;appMainBlue&quot;
-                                              : &quot;appMainLightBlue&quot;]),
+                                              ? &quot;appMain&quot;
+                                              : &quot;appLight&quot;]),
                                   &quot;macos&quot; =&gt; SvgPicture.asset(
                                       &quot;assets&#47;icons&#47;macos.svg&quot;,
                                       width: 100,
                                       height: 100,
-                                      color: StyleEssentials.colorsMap[
+                                      color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                           (modoClaro)
-                                              ? &quot;appMainBlue&quot;
-                                              : &quot;appMainLightBlue&quot;]),
+                                              ? &quot;appMain&quot;
+                                              : &quot;appLight&quot;]),
                                   &quot;linux&quot; =&gt; SvgPicture.asset(
                                       &quot;assets&#47;icons&#47;linux.svg&quot;,
                                       width: 100,
                                       height: 100,
-                                      color: StyleEssentials.colorsMap[
+                                      color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                           (modoClaro)
-                                              ? &quot;appMainBlue&quot;
-                                              : &quot;appMainLightBlue&quot;]),
+                                              ? &quot;appMain&quot;
+                                              : &quot;appLight&quot;]),
                                   &quot;windows&quot; =&gt; SvgPicture.asset(
                                       &quot;assets&#47;icons&#47;windows.svg&quot;,
                                       width: 100,
                                       height: 100,
-                                      color: StyleEssentials.colorsMap[
+                                      color: context.watch&lt;StyleProvider&gt;().colorsMap[
                                           (modoClaro)
-                                              ? &quot;appMainBlue&quot;
-                                              : &quot;appMainLightBlue&quot;]),
+                                              ? &quot;appMain&quot;
+                                              : &quot;appLight&quot;]),
                                   String() =&gt; throw UnimplementedError(),
                                 }
                               ],

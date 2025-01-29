@@ -75,8 +75,9 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static void putInQuarantine(File f, Signature sig) async {
-  String pathSHA =
-      crypto.sha256.convert(utf8.encode(basename(f.path))).toString();
+  String pathSHA = crypto.sha256
+      .convert(utf8.encode(&quot;${basename(f.path)} ${DateTime.now()}&quot;))
+      .toString();
   File file = await File(join(quarantineDirectory.path, pathSHA));
   var fileInside = await f.readAsBytes();
   file = await file.writeAsString(base64Encode(fileInside));
@@ -93,15 +94,9 @@
   await FileDAO().insert(sysFile);
 
   await f.delete();
-  if (!Platform.isWindows) {
-    await Notificationessentials().showNotification(1, &quot;Titulo&quot;,&quot;Cuerpo&quot;);
-  } else {
-    NotificationMessage message = NotificationMessage.fromPluginTemplate(
-        &quot;Magik_AV_Virus&quot;,
-        quarantine[chosenLocale]!,
-        (quarantinedFile(basename(f.path))[chosenLocale])!);
-    WindowsNotification(applicationId: Platform.packageConfig).showNotificationPluginTemplate(message);
-  }
+
+  await Fluttertoast.showToast(
+      msg: quarantinedFile(basename(f.path))[chosenLocale]!);
 }</code></pre>
 </section>
 

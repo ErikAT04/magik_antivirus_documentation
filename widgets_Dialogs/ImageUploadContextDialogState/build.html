@@ -97,10 +97,9 @@ Widget build(BuildContext context) {
                 errorText: errorTxt,
                 labelStyle: TextStyle(
                     fontSize: 10,
-                    color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                            StyleEssentials.darkMode)
-                        ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                        : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                    color: (context.watch&lt;StyleProvider&gt;().isLightModeActive)
+                        ? context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appMain&quot;]
+                        : context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appLight&quot;]),
                 errorStyle: TextStyle(fontSize: 10)),
           ),
         ),

@@ -83,6 +83,7 @@
 Future&lt;Device?&gt; get(String value) async {
   try {
     var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;${value}&quot;);
+    print(uri);
     var body = await APIReaderUtils.getData(uri);
     if (body != &quot;Dispositivo no encontrado&quot;) {
       var map = convert.jsonDecode(body);

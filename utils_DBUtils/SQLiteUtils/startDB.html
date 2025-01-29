@@ -73,19 +73,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; startDB() async {
-  Logger().i(&quot;Database opened&quot;);
-  await db.execute(&quot;&quot;&quot;
-  CREATE TABLE IF NOT EXISTS preferences(
-    isUserRegistered BOOLEAN,
-    userName TEXT,
-    userPass TEXT,
-    chosenLang TEXT,
-    isAutoThemeMode BOOLEAN,
-    themeMode TEXT
-  );
-  &quot;&quot;&quot;);
-  Logger().i(&quot;Table preferences created&quot;);
-  await db.execute(&quot;&quot;&quot;
+      await db.execute(&quot;&quot;&quot;
   CREATE TABLE IF NOT EXISTS files(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
@@ -104,16 +92,6 @@
     route TEXT
   );
 &quot;&quot;&quot;);
-  Logger().i(&quot;Table folders created&quot;);
-  await db.insert(&#39;preferences&#39;, {
-    &quot;isUserRegistered&quot;: 0,
-    &quot;userName&quot;: &quot;&quot;,
-    &quot;userPass&quot;: &quot;&quot;,
-    &quot;chosenLang&quot;: &quot;es&quot;,
-    &quot;isAutoThemeMode&quot;: 0,
-    &quot;themeMode&quot;: &quot;dark&quot;
-  });
-  Logger().i(&quot;preferences inserted&quot;);
 }</code></pre>
 </section>
 

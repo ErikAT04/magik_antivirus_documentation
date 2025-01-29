@@ -84,7 +84,7 @@ Future&lt;bool&gt; insert(User item) async {
   try {
     var uri = Uri.http(APIReaderUtils.apiRESTLink, &quot;$routerUrl&#47;insert&quot;);
     var body = await APIReaderUtils.postData(uri, item);
-    return body == convert.jsonEncode(item);
+    return body == convert.jsonEncode(item.toAPI());
   } catch (e) {
     Logger().e(e);
     return false;

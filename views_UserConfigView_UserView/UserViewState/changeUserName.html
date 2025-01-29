@@ -81,6 +81,11 @@
   if (newName != null) {
     context.read&lt;MainAppProvider&gt;().thisUser!.username = newName;
     await UserDAO().update(context.read&lt;MainAppProvider&gt;().thisUser!);
+    context
+        .read&lt;MainAppProvider&gt;()
+        .changeUser(context.read&lt;MainAppProvider&gt;().thisUser!);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(&quot;Nombre actualizado correctamente&quot;)));
   }
 }</code></pre>
 </section>

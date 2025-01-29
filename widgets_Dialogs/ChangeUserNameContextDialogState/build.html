@@ -85,7 +85,6 @@ Widget build(BuildContext context) {
         margin: EdgeInsets.all(10),
         child: Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 10,
           children: [
             Semantics(
               label: AppLocalizations.of(context)!.newUserName,
@@ -97,13 +96,13 @@ Widget build(BuildContext context) {
                     labelText: AppLocalizations.of(context)!.newUserName,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                                StyleEssentials.darkMode)
-                            ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                            : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                        color: (context.watch&lt;StyleProvider&gt;().isLightModeActive)
+                            ? context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appMain&quot;]
+                            : context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appLight&quot;]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
+            Padding(padding: EdgeInsets.all(10)),
             Semantics(
               label: AppLocalizations.of(context)!.passConfirm,
               hint: AppLocalizations.of(context)!.passContext,
@@ -115,14 +114,17 @@ Widget build(BuildContext context) {
                     labelText: AppLocalizations.of(context)!.passConfirm,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch&lt;MainAppProvider&gt;().theme ==
-                                StyleEssentials.darkMode)
-                            ? StyleEssentials.colorsMap[&quot;appMainLightBlue&quot;]
-                            : StyleEssentials.colorsMap[&quot;appMainBlue&quot;]),
+                        color: (context.watch&lt;StyleProvider&gt;().isLightModeActive)
+                            ? context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appMain&quot;]
+                            : context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appLight&quot;]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
+            Padding(padding: EdgeInsets.all(10)),
+            Center(child:
             Wrap(
+              runAlignment: WrapAlignment.center,
+              alignment: WrapAlignment.center,
               children: [
                 Semantics(
                   label: AppLocalizations.of(context)!.userCName,
@@ -133,6 +135,7 @@ Widget build(BuildContext context) {
                       },
                       child: Text(AppLocalizations.of(context)!.userCName)),
                 ),
+            Padding(padding: EdgeInsets.all(10)),
                 Semantics(
                   label: AppLocalizations.of(context)!.cancel,
                   hint: AppLocalizations.of(context)!.cancelContext,
@@ -143,7 +146,7 @@ Widget build(BuildContext context) {
                       child: Text(AppLocalizations.of(context)!.cancel)),
                 )
               ],
-            )
+            ))
           ],
         )),
   );

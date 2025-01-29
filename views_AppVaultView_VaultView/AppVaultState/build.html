@@ -87,7 +87,7 @@ Widget build(BuildContext context) {
         ExcludeSemantics(
             child: Text(AppLocalizations.of(context)!.vaultDesc)),
         (list.length == 0)
-            ? Text(&quot;No data yet&quot;)
+            ? Text(AppLocalizations.of(context)!.noDataYet)
             : Expanded(
                 child: Semantics(
                     label: AppLocalizations.of(context)!.fileList,

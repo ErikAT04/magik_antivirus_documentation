@@ -75,8 +75,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static void changeLang(String lang) async {
-  preferences.lang = lang;
-  await PrefsDAO().update(preferences);
+  await prefs.setString(&quot;chosenLang&quot;, lang);
 }</code></pre>
 </section>
 

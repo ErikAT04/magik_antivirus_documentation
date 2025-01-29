@@ -147,6 +147,7 @@
         passwd: crypto.sha256
             .convert(utf8.encode(passController.text))
             .toString(),
+        image: &quot;https:&#47;&#47;media.istockphoto.com&#47;id&#47;1147544807&#47;es&#47;vector&#47;no-imagen-en-miniatura-gr%C3%A1fico-vectorial.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=Bb7KlSXJXh3oSDlyFjIaCiB9llfXsgS7mHFZs6qUgVk=&quot;, &#47;&#47;Placeholder
         email: emailController.text);
     await UserDAO().insert(u);
     Navigator.pop(context, u);

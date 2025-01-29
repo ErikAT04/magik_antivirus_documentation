@@ -86,39 +86,25 @@ Widget build(BuildContext context) {
       child: Wrap(
         direction: Axis.vertical,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Wrap(
             children: [
               Text(file.name),
               Expanded(child: Container()),
               Icon(Icons.file_open)
             ],
           ),
-          Row(
-            children: [
           Text(&quot;${AppLocalizations.of(context)!.fileRoute} ${file.route}&quot;, softWrap: true,),
-            ],
-          ),
-          Row(
-            children: [Text(
-              &quot;${AppLocalizations.of(context)!.malType} ${file.malwareType}&quot;, softWrap: true,),],
-          ),
-          Row(
-            children: [
+          Text(
+              &quot;${AppLocalizations.of(context)!.malType} ${file.malwareType}&quot;, softWrap: true,),
+
               Text(
               &quot;${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}&quot;, softWrap: true,),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+
               ElevatedButton(
                   onPressed: () {
                     restoreFile(context, file);
                   },
                   child: Text(AppLocalizations.of(context)!.restFile))
-            ],
-          )
         ],
       ),
     ),

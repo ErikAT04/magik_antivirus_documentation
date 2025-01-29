@@ -95,7 +95,6 @@ El usuario de primeras verá un botón grande donde pone 'Analizar'.</p>
 @override
 Widget build(BuildContext context) {
   bool isActive = context.watch&lt;MainAppProvider&gt;().isIsolateActive;
-  String state = context.watch&lt;MainAppProvider&gt;().estado;
   if (!isActive) {
     return Center(
         child: Container(
@@ -121,7 +120,7 @@ Widget build(BuildContext context) {
       child: ExcludeSemantics(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [CircularProgressIndicator(), Text(state)],
+        children: [CircularProgressIndicator(), Text(&quot;${AppLocalizations.of(context)!.pleaseWait}\n${AppLocalizations.of(context)!.mightTakeaWhile}&quot;)],
       )),
     );
   }

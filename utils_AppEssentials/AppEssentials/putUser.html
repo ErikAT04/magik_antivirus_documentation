@@ -75,10 +75,9 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static void putUser(User user) async {
-  preferences.isUserRegistered = true;
-  preferences.uname = user.email;
-  preferences.upass = user.passwd;
-  await PrefsDAO().update(preferences);
+  prefs.setBool(&quot;isUserRegistered&quot;, true);
+  prefs.setString(&quot;userName&quot;, user.email);
+  prefs.setString(&quot;userPass&quot;, user.passwd);
 }</code></pre>
 </section>
 

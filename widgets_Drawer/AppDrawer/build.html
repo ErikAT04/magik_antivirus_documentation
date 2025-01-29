@@ -112,8 +112,7 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  bool modoClaro =
-      (context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode);
+  bool modoClaro = context.watch&lt;StyleProvider&gt;().isLightModeActive;
   return Drawer(
       child: SingleChildScrollView(
     child: Column(
@@ -179,13 +178,15 @@ Widget build(BuildContext context) {
             },
             child: ListTile(
               leading: Icon(Icons.folder,
-                  color: StyleEssentials.colorsMap[
-                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                  color: context
+                      .watch&lt;StyleProvider&gt;()
+                      .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
               title: Text(
                 AppLocalizations.of(context)!.drawerFFolders,
                 style: TextStyle(
-                  color: (StyleEssentials.colorsMap[
-                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                  color: (context
+                      .watch&lt;StyleProvider&gt;()
+                      .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
                 ),
               ),
             ),
@@ -196,13 +197,15 @@ Widget build(BuildContext context) {
           hint: AppLocalizations.of(context)!.translate,
           child: ListTile(
             leading: Icon(Icons.translate,
-                color: StyleEssentials.colorsMap[
-                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                color: context
+                    .watch&lt;StyleProvider&gt;()
+                    .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
             title: Text(
               AppLocalizations.of(context)!.drawerTranslate,
               style: TextStyle(
-                color: (StyleEssentials.colorsMap[
-                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                color: (context
+                    .watch&lt;StyleProvider&gt;()
+                    .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
               ),
             ),
             trailing: DropdownButton(
@@ -235,20 +238,21 @@ Widget build(BuildContext context) {
           hint: AppLocalizations.of(context)!.darkModeContext,
           child: ListTile(
             leading: Icon(Icons.dark_mode,
-                color: StyleEssentials.colorsMap[
-                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                color: context
+                    .watch&lt;StyleProvider&gt;()
+                    .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
             title: Text(
               AppLocalizations.of(context)!.drawerDarkMode,
               style: TextStyle(
-                color: (StyleEssentials.colorsMap[
-                    (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                color: (context
+                    .watch&lt;StyleProvider&gt;()
+                    .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
               ),
             ),
             trailing: Switch(
-                value: context.watch&lt;MainAppProvider&gt;().theme ==
-                    StyleEssentials.darkMode,
+                value: !context.watch&lt;StyleProvider&gt;().isLightModeActive,
                 onChanged: (value) {
-                  context.read&lt;MainAppProvider&gt;().changeTheme(value);
+                  context.read&lt;StyleProvider&gt;().changeThemeMode();
                 }),
           ),
         ),
@@ -269,18 +273,85 @@ Widget build(BuildContext context) {
             },
             child: ListTile(
               leading: Icon(Icons.info,
-                  color: StyleEssentials.colorsMap[
-                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                  color: context
+                      .watch&lt;StyleProvider&gt;()
+                      .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
               title: Text(
                 AppLocalizations.of(context)!.appVer,
                 style: TextStyle(
-                  color: (StyleEssentials.colorsMap[
-                      (modoClaro) ? &quot;appMainBlue&quot; : &quot;appMainLightBlue&quot;]),
+                  color: (context
+                      .watch&lt;StyleProvider&gt;()
+                      .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;]),
                 ),
               ),
             ),
           ),
-        )
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.brush,
+            color: context
+                .watch&lt;StyleProvider&gt;()
+                .colorsMap[(modoClaro) ? &quot;appMain&quot; : &quot;appLight&quot;],
+          ),
+          title: Text(&quot;Prueba: Cambiar Color&quot;),
+          trailing: DropdownButton&lt;Color&gt;(
+              items: [
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 14, 54, 111)),
+                  value: Color.fromARGB(255, 14, 54, 111),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 14, 111, 14)),
+                  value: Color.fromARGB(255, 14, 111, 14),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 199, 199, 61)),
+                  value: Color.fromARGB(255, 199, 199, 61),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 0, 0, 0)),
+                  value: Color.fromARGB(255, 0, 0, 0),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 111, 17, 14)),
+                  value: Color.fromARGB(255, 111, 17, 14),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 14, 111, 111)),
+                  value: Color.fromARGB(255, 14, 111, 111),
+                ),
+                DropdownMenuItem(
+                  child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Color.fromARGB(255, 88, 14, 111)),
+                  value: Color.fromARGB(255, 88, 14, 111),
+                ),
+              ],
+              onChanged: (value) {
+                context.read&lt;StyleProvider&gt;().changeThemeColor(value!);
+              },
+              value: context.watch&lt;StyleProvider&gt;().mainColor),
+        ),
       ],
     ),
   ));

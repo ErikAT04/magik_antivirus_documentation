@@ -85,7 +85,7 @@ Widget build(BuildContext context) {
   List&lt;ForbFolder&gt; ffolders = context.watch&lt;MainAppProvider&gt;().fFoldersList;
   return Scaffold(
       appBar: AppBar(
-        bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch&lt;MainAppProvider&gt;().theme == StyleEssentials.lightMode)?&quot;appMainBlue&quot;:&quot;appMainLightBlue&quot;],height: 1,)),
+        bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: context.watch&lt;StyleProvider&gt;().colorsMap[(context.watch&lt;StyleProvider&gt;().isLightModeActive)?&quot;appMain&quot;:&quot;appLight&quot;],height: 1,)),
         title: ExcludeSemantics(child: Text(AppLocalizations.of(context)!.drawerFFolders)),
       ),
       body: Center(
