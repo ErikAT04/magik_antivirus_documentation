@@ -83,11 +83,7 @@
   await SQLiteUtils.cargardb();
   await AppEssentials.loadSigs();
   Directory dir = Directory(join(
-      (Platform.isAndroid)
-          ? (await getApplicationDocumentsDirectory()).path
-          : (await getApplicationDocumentsDirectory()).path,
-      &quot;MagikAV&quot;,
-      &quot;MyFiles&quot;));
+      (await getApplicationDocumentsDirectory()).path, &quot;MagikAV&quot;, &quot;MyFiles&quot;));
   if (!dir.existsSync()) {
     dir.createSync(recursive: true);
   }
@@ -97,8 +93,12 @@
   AppEssentials.registerThisDevice();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) =&gt; MainAppProvider()),
-      ChangeNotifierProvider(create: (context) =&gt; StyleProvider())
+      ChangeNotifierProvider(create: (context) =&gt; UserDataProvider()),
+      ChangeNotifierProvider(create: (context) =&gt; StyleProvider()),
+      ChangeNotifierProvider(
+        create: (context) =&gt; AnalysisProvider(),
+      ),
+      ChangeNotifierProvider(create: (context) =&gt; LanguageNotifier())
     ],
     child: MainApp(),
   ));
@@ -129,7 +129,7 @@
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.3
+      0.0.4
   </span>
   
 </footer>

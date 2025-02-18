@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the build method from the FileContext class, for the Dart programming language.">
-  <title>build method - FileContext class - Dialogs library - Dart API</title>
+  <title>build method - FileContext class - dialogs library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">magik_antivirus</a></li>
-    <li><a href="../../widgets_Dialogs/widgets_Dialogs-library.html">widgets\Dialogs.dart</a></li>
-    <li><a href="../../widgets_Dialogs/FileContext-class.html">FileContext</a></li>
+    <li><a href="../../widgets_dialogs/widgets_dialogs-library.html">widgets\dialogs.dart</a></li>
+    <li><a href="../../widgets_dialogs/FileContext-class.html">FileContext</a></li>
     <li class="self-crumb">build method</li>
   </ol>
   <div class="self-name">build</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="widgets_Dialogs&#47;FileContext-class-sidebar.html"
+    data-above-sidebar="widgets_dialogs&#47;FileContext-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">build</span> method 
@@ -71,7 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Muestra los distintos datos del fichero, junto un botón para</p>
+  <p>Muestra los distintos datos del fichero, junto un botón para borrar el archivo y otro para restaurarlo.</p>
 </section>
 
 
@@ -83,28 +83,49 @@ Widget build(BuildContext context) {
   return Dialog(
     child: Container(
       padding: EdgeInsets.all(10),
-      child: Wrap(
-        direction: Axis.vertical,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Wrap(
+          Row(
             children: [
               Text(file.name),
-              Expanded(child: Container()),
-              Icon(Icons.file_open)
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.all(1),
+              )),
+              Icon(
+                Icons.file_open,
+                size: 30,
+              )
             ],
           ),
-          Text(&quot;${AppLocalizations.of(context)!.fileRoute} ${file.route}&quot;, softWrap: true,),
           Text(
-              &quot;${AppLocalizations.of(context)!.malType} ${file.malwareType}&quot;, softWrap: true,),
-
-              Text(
-              &quot;${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}&quot;, softWrap: true,),
-
-              ElevatedButton(
+            &quot;${AppLocalizations.of(context)!.fileRoute} ${file.route}&quot;,
+            softWrap: true,
+          ),
+          Text(
+            &quot;${AppLocalizations.of(context)!.malType} ${file.malwareType}&quot;,
+            softWrap: true,
+          ),
+          Text(
+            &quot;${AppLocalizations.of(context)!.confDate} ${file.quarantineDate.year}-${(file.quarantineDate.month &lt; 10) ? &quot;0${file.quarantineDate.month}&quot; : file.quarantineDate.month}-${(file.quarantineDate.day &lt; 10) ? &quot;0${file.quarantineDate.day}&quot; : file.quarantineDate.day}&quot;,
+            softWrap: true,
+          ),
+          Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  restoreFile(context, file);
+                },
+                child: Text(AppLocalizations.of(context)!.restFile)),
+          ),
+          Center(
+              child: ElevatedButton(
                   onPressed: () {
-                    restoreFile(context, file);
+                    eraseFile(context, file);
                   },
-                  child: Text(AppLocalizations.of(context)!.restFile))
+                  child: Text(AppLocalizations.of(context)!.eraseFile)))
         ],
       ),
     ),
@@ -123,8 +144,8 @@ Widget build(BuildContext context) {
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">magik_antivirus</a></li>
-    <li><a href="../../widgets_Dialogs/widgets_Dialogs-library.html">Dialogs</a></li>
-    <li><a href="../../widgets_Dialogs/FileContext-class.html">FileContext</a></li>
+    <li><a href="../../widgets_dialogs/widgets_dialogs-library.html">dialogs</a></li>
+    <li><a href="../../widgets_dialogs/FileContext-class.html">FileContext</a></li>
     <li class="self-crumb">build method</li>
 </ol>
 
@@ -137,7 +158,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.3
+      0.0.4
   </span>
   
 </footer>

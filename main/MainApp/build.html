@@ -103,11 +103,11 @@ Widget build(BuildContext context) {
       Locale(&#39;fr&#39;)
     ],
     locale: &#47;&#47;Controlar el lenguaje formato Locale(&#39;codigo&#39;)
-        context.watch&lt;MainAppProvider&gt;().language,
+        context.watch&lt;LanguageNotifier&gt;().language,
     theme: context.watch&lt;StyleProvider&gt;().isLightModeActive
         ? context.watch&lt;StyleProvider&gt;().lightMode
         : context.watch&lt;StyleProvider&gt;().darkMode,
-    home: (context.watch&lt;MainAppProvider&gt;().thisUser == null)
+    home: (context.watch&lt;UserDataProvider&gt;().thisUser == null)
         ? LogInView()
         : Mainview(), &#47;&#47;Si no se carga un usuario por defecto, se va al inicio de sesión.
   );
@@ -139,7 +139,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.3
+      0.0.4
   </span>
   
 </footer>

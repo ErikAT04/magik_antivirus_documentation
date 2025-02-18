@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the logIn method from the LogInViewState class, for the Dart programming language.">
+  <title>logIn method - LogInViewState class - login_view library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">magik_antivirus</a></li>
+    <li><a href="../../views_login_view/views_login_view-library.html">views\login_view.dart</a></li>
+    <li><a href="../../views_login_view/LogInViewState-class.html">LogInViewState</a></li>
+    <li class="self-crumb">logIn method</li>
+  </ol>
+  <div class="self-name">logIn</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="views_login_view&#47;LogInViewState-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">logIn</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<span class="returntype">void</span>
+<span class="name ">logIn</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="logIn-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Método de inicio de sesión</p>
+<p>El programa verificará los campos de usuario y contraseña</p>
+<ul>
+<li>
+<p>Si están vacíos, dará error</p>
+</li>
+<li>
+<p>Si tienen datos, buscarán un usuario en la base de datos que coincida con el email o el nombre dado.</p>
+</li>
+<li>
+<p>Si no hay ocurrencias en la base de datos, mostrará un error de que el usuario no existe</p>
+</li>
+<li>
+<p>Si hay ocurrencias, mira a ver si la contraseña es correcta</p>
+</li>
+<li>
+<p>Si no es correcta, mostrará un error de contraseña</p>
+</li>
+<li>
+<p>Si es correcta, enviará al usuario a la próxima página: La Vista Principal</p>
+</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">void logIn(BuildContext context) async {
+  User? user;
+  String? passError = null;
+  String? emailError = null;
+  bool completedSuccesfully = false;
+
+  if (passController.text.isEmpty || emailController.text.isEmpty) {
+    passError = (passController.text.isEmpty)
+        ? AppLocalizations.of(context)!.errorEmptyField
+        : null;
+    emailError = (emailController.text.isEmpty)
+        ? AppLocalizations.of(context)!.errorEmptyField
+        : null;
+  } else {
+    user = await UserDAO().get(emailController.text);
+    if (user == null) {
+      emailError = AppLocalizations.of(context)!.errorNotFound;
+    } else {
+      if (crypto.sha256
+              .convert(utf8.encode(passController.text))
+              .toString() ==
+          user.passwd) {
+        completedSuccesfully = true;
+        AppEssentials.dev!.user = user.email;
+        await DeviceDAO().update(AppEssentials.dev!);
+        context.read&lt;UserDataProvider&gt;().changeUser(user);
+      } else {
+        passError = AppLocalizations.of(context)!.errorWrongPass;
+      }
+    }
+  }
+  if (completedSuccesfully) {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) =&gt; Mainview()));
+  } else {
+    setState(() {
+      passErrorText = passError;
+      emailErrorText = emailError;
+    });
+  }
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">magik_antivirus</a></li>
+    <li><a href="../../views_login_view/views_login_view-library.html">login_view</a></li>
+    <li><a href="../../views_login_view/LogInViewState-class.html">LogInViewState</a></li>
+    <li class="self-crumb">logIn method</li>
+</ol>
+
+    <h5>LogInViewState class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    magik_antivirus
+      0.0.4
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

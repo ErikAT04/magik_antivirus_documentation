@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the build method from the ChangeUserNameContextDialogState class, for the Dart programming language.">
-  <title>build method - ChangeUserNameContextDialogState class - Dialogs library - Dart API</title>
+  <title>build method - ChangeUserNameContextDialogState class - dialogs library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">magik_antivirus</a></li>
-    <li><a href="../../widgets_Dialogs/widgets_Dialogs-library.html">widgets\Dialogs.dart</a></li>
-    <li><a href="../../widgets_Dialogs/ChangeUserNameContextDialogState-class.html">ChangeUserNameContextDialogState</a></li>
+    <li><a href="../../widgets_dialogs/widgets_dialogs-library.html">widgets\dialogs.dart</a></li>
+    <li><a href="../../widgets_dialogs/ChangeUserNameContextDialogState-class.html">ChangeUserNameContextDialogState</a></li>
     <li class="self-crumb">build method</li>
   </ol>
   <div class="self-name">build</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="widgets_Dialogs&#47;ChangeUserNameContextDialogState-class-sidebar.html"
+    data-above-sidebar="widgets_dialogs&#47;ChangeUserNameContextDialogState-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">build</span> method 
@@ -83,8 +83,11 @@ Widget build(BuildContext context) {
   return Dialog(
     child: Container(
         margin: EdgeInsets.all(10),
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
+        child: Column(
+          spacing: 10,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Semantics(
               label: AppLocalizations.of(context)!.newUserName,
@@ -96,13 +99,17 @@ Widget build(BuildContext context) {
                     labelText: AppLocalizations.of(context)!.newUserName,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch&lt;StyleProvider&gt;().isLightModeActive)
-                            ? context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appMain&quot;]
-                            : context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appLight&quot;]),
+                        color:
+                            (context.watch&lt;StyleProvider&gt;().isLightModeActive)
+                                ? context
+                                    .watch&lt;StyleProvider&gt;()
+                                    .colorsMap[&quot;appMain&quot;]
+                                : context
+                                    .watch&lt;StyleProvider&gt;()
+                                    .colorsMap[&quot;appLight&quot;]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
             Semantics(
               label: AppLocalizations.of(context)!.passConfirm,
               hint: AppLocalizations.of(context)!.passContext,
@@ -114,39 +121,35 @@ Widget build(BuildContext context) {
                     labelText: AppLocalizations.of(context)!.passConfirm,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch&lt;StyleProvider&gt;().isLightModeActive)
-                            ? context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appMain&quot;]
-                            : context.watch&lt;StyleProvider&gt;().colorsMap[&quot;appLight&quot;]),
+                        color:
+                            (context.watch&lt;StyleProvider&gt;().isLightModeActive)
+                                ? context
+                                    .watch&lt;StyleProvider&gt;()
+                                    .colorsMap[&quot;appMain&quot;]
+                                : context
+                                    .watch&lt;StyleProvider&gt;()
+                                    .colorsMap[&quot;appLight&quot;]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
-            Center(child:
-            Wrap(
-              runAlignment: WrapAlignment.center,
-              alignment: WrapAlignment.center,
-              children: [
-                Semantics(
-                  label: AppLocalizations.of(context)!.userCName,
-                  hint: AppLocalizations.of(context)!.userCNameContext,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        changeName(context);
-                      },
-                      child: Text(AppLocalizations.of(context)!.userCName)),
-                ),
-            Padding(padding: EdgeInsets.all(10)),
-                Semantics(
-                  label: AppLocalizations.of(context)!.cancel,
-                  hint: AppLocalizations.of(context)!.cancelContext,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context, null);
-                      },
-                      child: Text(AppLocalizations.of(context)!.cancel)),
-                )
-              ],
-            ))
+            Semantics(
+              label: AppLocalizations.of(context)!.userCName,
+              hint: AppLocalizations.of(context)!.userCNameContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    changeName(context);
+                  },
+                  child: Text(AppLocalizations.of(context)!.userCName)),
+            ),
+            Semantics(
+              label: AppLocalizations.of(context)!.cancel,
+              hint: AppLocalizations.of(context)!.cancelContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, null);
+                  },
+                  child: Text(AppLocalizations.of(context)!.cancel)),
+            )
           ],
         )),
   );
@@ -164,8 +167,8 @@ Widget build(BuildContext context) {
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">magik_antivirus</a></li>
-    <li><a href="../../widgets_Dialogs/widgets_Dialogs-library.html">Dialogs</a></li>
-    <li><a href="../../widgets_Dialogs/ChangeUserNameContextDialogState-class.html">ChangeUserNameContextDialogState</a></li>
+    <li><a href="../../widgets_dialogs/widgets_dialogs-library.html">dialogs</a></li>
+    <li><a href="../../widgets_dialogs/ChangeUserNameContextDialogState-class.html">ChangeUserNameContextDialogState</a></li>
     <li class="self-crumb">build method</li>
 </ol>
 
@@ -178,7 +181,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     magik_antivirus
-      0.0.3
+      0.0.4
   </span>
   
 </footer>
